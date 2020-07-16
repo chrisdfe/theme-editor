@@ -27,14 +27,6 @@ const Sidebar = () => {
 
   return (
     <div className="Sidebar">
-      <div className="Sidebar__navbar-wrapper">
-        <Navbar>
-          <Link className="LinkButton" to="/">
-            back
-          </Link>
-        </Navbar>
-      </div>
-
       <div className="Sidebar__body">
         <div className="Sidebar__section">
           <h3 className="Sidebar__section-title">Swatches</h3>

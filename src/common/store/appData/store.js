@@ -1,7 +1,7 @@
 import Store from "electron-store";
 
 const store = new Store({
-  name: "goals",
+  name: "theme-editor",
 });
 
 export default store;

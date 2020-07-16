@@ -1,0 +1,24 @@
+.ThemeEditor {
+}
+
+.ThemeEditor__section {
+  margin: 0 0 35px;
+}
+
+.ThemeEditor__section-title {
+  padding: 0 0 5px;
+  border-bottom: 1px solid var(--f_low);
+  margin: 0 0 15px;
+}
+
+.ThemeEditor__action-buttons {
+  display: flex;
+}
+
+.ThemeEditor__action-buttons > * {
+  margin-right: 10px;
+}
+
+.ThemeEditor__action-buttons > *:last-child {
+  margin-right: 0;
+}

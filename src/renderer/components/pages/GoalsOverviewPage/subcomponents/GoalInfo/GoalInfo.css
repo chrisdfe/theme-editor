@@ -1,0 +1,42 @@
+.GoalInfo {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--f_low);
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.GoalInfo__description {
+  margin: 0 0 10px;
+}
+
+.GoalInfo__attributes {
+  color: var(--f_low);
+}
+
+.GoalInfo__attributes > p {
+  padding: 0;
+  margin: 0;
+}
+
+.GoalInfo__controls {
+  margin-left: auto;
+}
+
+.GoalInfo__remove-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0 none;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  color: var(--f_high);
+  cursor: pointer;
+}
+
+.GoalInfo__remove-button:hover {
+  background-color: var(--b_med);
+}

@@ -1,0 +1,21 @@
+.TextInput {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--background);
+  border: 1px solid var(--f_high);
+  padding: 8px;
+  font-size: 14px;
+  color: var(--f_high);
+}
+
+.TextInput:focus {
+  border: 1px solid var(--f_med);
+  outline: 2px var(--f_med);
+}
+
+/* Size - small */
+.TextInput.TextInput--size-small {
+  padding: 6px;
+  font-size: 12px;
+}

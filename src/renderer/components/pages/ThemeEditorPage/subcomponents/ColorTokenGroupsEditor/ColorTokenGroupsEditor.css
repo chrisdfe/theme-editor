@@ -1,0 +1,30 @@
+.ColorTokenGroupsEditor {
+}
+
+.ColorTokenGroupsEditor__button-wrapper {
+  margin-top: 5px;
+}
+
+.ColorTokenGroupsEditor__color-token {
+  margin: 0 0 5px;
+}
+
+.ColorTokenGroupsEditor__color-token__name {
+  margin: 0;
+}
+.ColorTokenGroupsEditor__color-token__swatch-colors-list {
+  display: flex;
+}
+
+.ColorTokenGroupsEditor__color-token__swatch-color {
+  width: 10px;
+  height: 10px;
+  padding: 4px;
+  border: 2px solid transparent;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.ColorTokenGroupsEditor__color-token__swatch-color.ColorTokenGroupsEditor__color-token__swatch-color--is-selected {
+  border-color: var(--f_med);
+}

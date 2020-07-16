@@ -1,0 +1,14 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--b_med);
+  height: 60px;
+}
+
+.Navbar__body {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 30px;
+}

@@ -1,0 +1,10 @@
+{
+  "whiteListedModules": [
+    "react-dom",
+    "redux",
+    "react-redux",
+    "react-hot-loader",
+    "react-router-dom",
+    "downshift"
+  ]
+}

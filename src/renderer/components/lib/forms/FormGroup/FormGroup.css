@@ -1,0 +1,19 @@
+.FormGroup {
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+}
+
+.FormGroup:last-child {
+  margin-bottom: 0;
+}
+
+.FormGroup__label {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.FormGroup__input-wrapper {
+  display: flex;
+  flex-direction: column;
+}

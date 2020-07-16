@@ -1,0 +1,33 @@
+.SwatchesList {
+}
+
+.SwatchesList__list-wrapper {
+  display: flex;
+}
+
+.SwatchesList__item {
+  padding: 5px;
+  width: 25%;
+  flex-basis: 25%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  /*text-align: center;*/
+  cursor: pointer;
+}
+
+.SwatchesList__item__name {
+  padding: 0;
+  margin: 5px 0 0;
+  font-size: 10px;
+}
+
+.SwatchesList__item__swatch-colors-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.SwatchesList__item__swatch-colors-list__item {
+  width: 7px;
+  height: 7px;
+  margin: 1px;
+}

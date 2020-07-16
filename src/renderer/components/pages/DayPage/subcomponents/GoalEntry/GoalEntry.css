@@ -1,0 +1,26 @@
+.GoalEntry {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--f_low);
+  margin-bottom: 10px;
+}
+
+.GoalEntry__description {
+  margin: 0 0 5px;
+}
+
+.GoalEntry__amount-frequency-text {
+  color: var(--f_low);
+  padding-left: 5px;
+}
+
+.GoalEntry__progress-button-wrapper {
+  margin-top: 10px;
+}
+
+.GoalEntry__completion-info {
+  margin: 15px 0;
+}
+
+.GoalEntry__progress-logger {
+  padding: 15px;
+}

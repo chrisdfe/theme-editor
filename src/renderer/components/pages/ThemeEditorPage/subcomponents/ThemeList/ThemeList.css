@@ -1,0 +1,15 @@
+.ThemeList {
+}
+
+.ThemeList__theme-list-item {
+}
+
+.ThemeList__theme-list-item__swatch-color-list {
+  display: flex;
+}
+
+.ThemeList__theme-list-item__swatch-color {
+  margin: 2px;
+  width: 10px;
+  height: 10px;
+}

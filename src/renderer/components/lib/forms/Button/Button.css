@@ -1,0 +1,19 @@
+.Button,
+.LinkButton {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--b_low);
+  border: 1px solid var(--b_low);
+  color: var(--f_high);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.1s;
+  text-decoration: none;
+  /*font-weight: 700;*/
+}
+
+.Button:hover,
+.LinkButton:hover {
+  background: var(--b_med);
+  border: 1px solid var(--b_med);
+}

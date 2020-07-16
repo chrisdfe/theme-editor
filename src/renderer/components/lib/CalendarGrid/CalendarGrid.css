@@ -1,0 +1,57 @@
+.CalendarGridWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.CalendarGridWrapper__date-label {
+  padding: 5px 0;
+  height: 20px;
+}
+
+.CalendarGrid {
+  display: flex;
+}
+
+.CalendarGridColumn {
+  padding: 0 1px;
+}
+
+.CalendarGridCellWrapper {
+  padding: 1px 0;
+}
+
+.CalendarGridCell {
+  width: 10px;
+  height: 10px;
+  background: var(--f_low);
+  /*border: 1px solid var(--f_low);*/
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.CalendarGridCell:hover {
+  opacity: 1;
+}
+
+.CalendarGridCell.CalendarGridCell--disabled,
+.CalendarGridCell.CalendarGridCell--disabled:hover {
+  opacity: 0.1;
+  cursor: default;
+}
+
+.CalendarGridCell.CalendarGridCell--is-todays-date {
+  /*opacity: 0.8;*/
+  background: var(--f_high);
+  /*background: transparent;*/
+}
+
+.CalendarGridCell.CalendarGridCell--is-selected,
+.CalendarGridCell.CalendarGridCell--is-selected:hover {
+  opacity: 1;
+  background: var(--f_med);
+  /*background: var(--f_med);*/
+  /*border-color: var(--f_med);*/
+}

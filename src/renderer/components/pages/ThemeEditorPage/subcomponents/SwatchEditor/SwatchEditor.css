@@ -1,0 +1,41 @@
+.SwatchEditor {
+}
+
+.SwatchEditor__title {
+  padding: 0;
+  margin: 0 0 15px;
+}
+
+.SwatchEditor__swatch-colors-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 0 5px;
+}
+
+.SwatchEditor__swatch-color-card {
+  border: 2px solid transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.SwatchEditor__swatch-color-card.SwatchEditor__swatch-color-card--is-selected {
+  border-color: var(--f_med);
+}
+
+.SwatchEditor__swatch-color-card.SwatchEditor__swatch-color-card--is-editable {
+  cursor: pointer;
+}
+
+.SwatchEditor__swatch-color-card__square {
+  width: 30px;
+  height: 30px;
+}
+
+.SwatchEditor__input-wrapper {
+}
+
+.SwatchEditor__button-wrapper {
+  margin-top: 5px;
+}

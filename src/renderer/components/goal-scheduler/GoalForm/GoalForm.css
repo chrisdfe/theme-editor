@@ -1,0 +1,11 @@
+.GoalForm {
+}
+
+.GoalForm__input-group {
+  padding: 10px 0;
+}
+
+.GoalForm__input-group input,
+.GoalForm__input-group select {
+  margin-top: 10px;
+}

@@ -1,0 +1,16 @@
+.ColorSlider {
+  font-size: 14px;
+}
+
+.ColorSlider__label {
+  display: flex;
+  align-items: center;
+}
+
+.ColorSlider__label-text {
+  width: 40px;
+  padding-right: 10px;
+}
+
+.ColorSlider__input {
+}

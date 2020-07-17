@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,9 @@ import * as colorTokenGroupSelectors from "common/store/domains/colorTokenGroups
 
 import CommandsContext from "common/commands/CommandsContext";
 import saveCurrentEditedTheme from "common/commands/saveCurrentEditedTheme";
+import cancelEditingThemeBundle from "common/commands/cancelEditingThemeBundle";
 
+import TextInput from "@/components/lib/forms/TextInput";
 import Button from "@/components/lib/forms/Button";
 
 import SwatchEditor from "../SwatchEditor";
@@ -36,9 +38,33 @@ const ThemeEditor = () => {
     colorTokens,
   } = useSelector(themeBundleSelectors.getEditingThemeBundle);
 
+  const [themeNameValue, setThemeNameValue] = useState("");
+
+  useEffect(() => {
+    setThemeNameValue(theme.name);
+  }, [theme.id]);
+
   return (
     <div className="ThemeEditor">
-      <h3>{theme.name}</h3>
+      <div className="ThemeEditor__section">
+        <TextInput
+          value={themeNameValue}
+          label="name"
+          onChange={(e) => {
+            console.log("onchange", e.target.value);
+            setThemeNameValue(e.target.value);
+          }}
+          onBlur={() => {
+            console.log("onblur");
+            dispatch(
+              themeActions.updateTheme({
+                id: theme.id,
+                attributes: { name: themeNameValue },
+              })
+            );
+          }}
+        />
+      </div>
 
       <div className="ThemeEditor__section">
         <h4 className="ThemeEditor__section-title">swatch</h4>
@@ -62,7 +88,7 @@ const ThemeEditor = () => {
           <div className="ThemeEditor__action-buttons">
             <Button
               onClick={() => {
-                dispatch(themeActions.cancelEditingTheme({ id: theme.id }));
+                doCommand(cancelEditingThemeBundle());
               }}
             >
               cancel

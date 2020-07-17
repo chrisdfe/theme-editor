@@ -96,16 +96,18 @@ const SwatchEditor = () => {
       {selectedSwatchColor && (
         <div className="SwatchEditor__input-wrapper">
           <TextInput
+            label="hex #"
             value={inputValue}
             onChange={(e) => {
               const { value } = e.target;
               setInputValue(value);
-              if (isHex(value)) {
-                // TODO - debounce
+            }}
+            onBlur={() => {
+              if (isHex(inputValue)) {
                 dispatch(
                   swatchColorActions.updateEditingSwatchColor({
                     id: selectedSwatchColor.id,
-                    attributes: { hex: value },
+                    attributes: { hex: inputValue },
                   })
                 );
               }

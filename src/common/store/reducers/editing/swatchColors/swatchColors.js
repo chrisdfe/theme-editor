@@ -16,17 +16,14 @@ const initialState = {
 
 const swatchColorsReducer = createReducer(initialState, {
   [themeTypes.EDIT_STARTED]: (state, { swatchColors }) => {
-    const byId = {
-      ...state.byId,
-      ...swatchColors.reduce((acc, swatchColor) => {
-        return {
-          ...acc,
-          [swatchColor.id]: swatchColor,
-        };
-      }, {}),
-    };
+    const byId = swatchColors.reduce((acc, swatchColor) => {
+      return {
+        ...acc,
+        [swatchColor.id]: swatchColor,
+      };
+    }, {});
 
-    const allIds = [...state.allIds, ...swatchColors.map(({ id }) => id)];
+    const allIds = swatchColors.map(({ id }) => id);
 
     const originalState = swatchColors.reduce((acc, swatchColor) => {
       return {

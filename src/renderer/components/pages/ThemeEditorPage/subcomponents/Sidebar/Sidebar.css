@@ -2,15 +2,16 @@
 }
 
 .Sidebar__body {
-  padding: 15px 0;
+  padding: 20px 0;
 }
 
 .Sidebar__section {
-  padding: 5px 10px 15px;
+  padding: 5px 20px 25px;
 }
 
 .Sidebar__section-title {
   padding: 0 0 5px;
   border-bottom: 1px solid var(--f_high);
   margin: 0 0 15px;
+  font-size: 15px;
 }

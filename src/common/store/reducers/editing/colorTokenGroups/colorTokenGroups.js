@@ -20,25 +20,22 @@ const colorTokenGroupsReducer = createReducer(initialState, {
   },
 
   [themeTypes.EDIT_STARTED]: (state, { colorTokenGroups, colorTokens }) => {
-    const byId = {
-      ...state.byId,
-      ...colorTokenGroups.reduce((acc, colorTokenGroup) => {
-        const colorTokenGroupColorTokens = colorTokens.filter(
-          (colorToken) => colorToken.colorTokenGroupId === colorTokenGroup.id
-        );
-        const colorTokenIds = colorTokenGroupColorTokens.map(({ id }) => id);
+    const byId = colorTokenGroups.reduce((acc, colorTokenGroup) => {
+      const colorTokenGroupColorTokens = colorTokens.filter(
+        (colorToken) => colorToken.colorTokenGroupId === colorTokenGroup.id
+      );
+      const colorTokenIds = colorTokenGroupColorTokens.map(({ id }) => id);
 
-        return {
-          ...acc,
-          [colorTokenGroup.id]: {
-            ...colorTokenGroup,
-            colorTokenIds,
-          },
-        };
-      }, {}),
-    };
+      return {
+        ...acc,
+        [colorTokenGroup.id]: {
+          ...colorTokenGroup,
+          colorTokenIds,
+        },
+      };
+    }, {});
 
-    const allIds = [...state.allIds, ...colorTokenGroups.map(({ id }) => id)];
+    const allIds = colorTokenGroups.map(({ id }) => id);
 
     const originalState = colorTokenGroups.reduce((acc, colorTokenGroup) => {
       const colorTokenGroupColorTokens = colorTokens.filter(
@@ -61,7 +58,6 @@ const colorTokenGroupsReducer = createReducer(initialState, {
       originalState,
     };
   },
-  // [types.UPDATE_EDITED_THEME]: (state, action) => {}
 });
 
 export default colorTokenGroupsReducer;

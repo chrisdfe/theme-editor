@@ -10,6 +10,7 @@ export const REMOVE_THEMES = "themes/REMOVE_THEMES";
 export const UPDATE_THEME = "themes/UPDATE_THEME";
 export const UPDATE_THEMES = "themes/UPDATE_THEMES";
 
+// TODO - these should probably be themeBundle/
 export const EDIT_STARTED = "themes/edit/EDIT_STARTED";
 export const EDIT_CLEARED = "themes/edit/EDIT_CLEARED";
 

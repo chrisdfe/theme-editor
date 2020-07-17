@@ -16,7 +16,7 @@ export const getNextName = (themeColorTokenGroups = []) => {
   const nextName = DEFAULT_GROUP_NAME_SEQUENCE.find(
     (name) => !allNames.includes(name)
   );
-  console.log("nextName", nextName);
+
   return nextName;
 };
 

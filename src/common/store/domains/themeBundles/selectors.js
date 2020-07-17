@@ -53,9 +53,6 @@ export const getEditingThemeBundle = createSelector(
       swatch
     );
 
-    console.log("getEditingThemeBundle");
-    console.log("swatchColors", swatchColors);
-
     const colorTokens = colorTokenGroupSelectors.getEditingColorTokenGroupsColorTokensFlatList(
       state,
       colorTokenGroups

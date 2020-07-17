@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as themeBundleActions from "common/store/domains/themeBundles/actions";
 
 import * as themeActions from "common/store/domains/themes/actions";
 import * as swatchSelectors from "common/store/domains/swatches/selectors";
+
+import CommandsContext from "common/commands/CommandsContext";
+import loadThemeFileFromDialog from "common/commands/loadThemeFileFromDialog";
+import createThemeBundleFromSwatchAndBeginEditing from "common/commands/createThemeBundleFromSwatchAndBeginEditing";
 
 import "./SwatchesList.css";
 
@@ -14,14 +18,14 @@ const SwatchesListItem = ({ swatch }) => {
     swatchSelectors.getSwatchSwatchColors(state, swatch)
   );
 
+  const doCommand = useContext(CommandsContext);
+
   return (
     <div
       className="SwatchesList__item"
       onClick={() => {
-        dispatch(
-          themeBundleActions.createThemeBundleFromSwatchAndBeginEditing({
-            id: swatch.id,
-          })
+        doCommand(
+          createThemeBundleFromSwatchAndBeginEditing({ id: swatch.id })
         );
       }}
     >

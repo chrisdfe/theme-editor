@@ -1,7 +1,13 @@
 .ThemeList {
 }
 
+.ThemeList__body {
+  padding: 0 0 15px;
+}
+
 .ThemeList__theme-list-item {
+  display: flex;
+  flex-direction: row;
 }
 
 .ThemeList__theme-list-item__swatch-color-list {
@@ -12,4 +18,20 @@
   margin: 2px;
   width: 10px;
   height: 10px;
+}
+
+.ThemeList__theme-list-item__actions {
+  margin-left: auto;
+}
+
+.ThemeList__action-buttons {
+  display: flex;
+}
+
+.ThemeList__action-buttons > * {
+  margin-right: 10px;
+}
+
+.ThemeList__action-buttons > *:last-child {
+  margin-right: 0;
 }

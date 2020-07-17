@@ -16,7 +16,6 @@ const initialState = {
 const colorTokensReducer = createReducer(initialState, {
   [themeTypes.EDIT_STARTED]: (state, { colorTokens }) => {
     const byId = {
-      ...state.byId,
       ...colorTokens.reduce((acc, colorToken) => {
         return {
           ...acc,
@@ -25,7 +24,7 @@ const colorTokensReducer = createReducer(initialState, {
       }, {}),
     };
 
-    const allIds = [...state.allIds, ...colorTokens.map(({ id }) => id)];
+    const allIds = colorTokens.map(({ id }) => id);
 
     const originalState = colorTokens.reduce((acc, colorToken) => {
       return {

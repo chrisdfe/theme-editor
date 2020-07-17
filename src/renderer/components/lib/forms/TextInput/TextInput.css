@@ -4,8 +4,8 @@
   box-sizing: border-box;
   background: var(--background);
   border: 1px solid var(--f_high);
-  padding: 8px;
-  font-size: 14px;
+  padding: 6px 8px;
+  font-size: 12px;
   color: var(--f_high);
 }
 

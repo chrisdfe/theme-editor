@@ -39,6 +39,7 @@ const createFlatColorTokenMap = ({
       const colorTokenGroup = colorTokenGroups.find(
         ({ id }) => id === colorTokenGroupId
       );
+
       const { name: groupName } = colorTokenGroup;
       const colors = colorTokens.map((colorToken) => {
         const swatchColor = swatchColors.find(
@@ -67,6 +68,11 @@ const ThemePreviewArea = () => {
   const { swatch, swatchColors, colorTokenGroups } = useSelector(
     themeBundleSelectors.getEditingThemeBundle
   );
+  console.log("{ swatch, swatchColors, colorTokenGroups }", {
+    swatch,
+    swatchColors,
+    colorTokenGroups,
+  });
 
   const colorTokensByGroupId = useSelector(
     colorTokenGroupSelectors.getEditingColorTokenGroupColorTokensById

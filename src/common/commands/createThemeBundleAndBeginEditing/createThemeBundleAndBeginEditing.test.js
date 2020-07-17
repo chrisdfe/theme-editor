@@ -1,7 +1,7 @@
 // import saveTheme from "./saveTheme";
 
 describe("commands", () => {
-  xdescribe("#newTheme", () => {
+  xdescribe("#createThemeBundleAndBeginEditing", () => {
     xit("creates adds a new theme to the editing state");
 
     xdescribe("if there is already a theme being edited", () => {

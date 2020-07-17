@@ -20,14 +20,13 @@ const swatchesReducer = createReducer(initialState, {
     const swatchColorIds = swatchColors.map(({ id }) => id);
 
     const byId = {
-      ...state.byId,
       [swatch.id]: {
         ...swatch,
         swatchColorIds,
       },
     };
 
-    const allIds = [...state.allIds, swatch.id];
+    const allIds = [swatch.id];
 
     const originalState = {
       ...state.originalState,

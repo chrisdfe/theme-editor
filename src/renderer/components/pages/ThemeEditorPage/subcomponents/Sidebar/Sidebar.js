@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import * as themeActions from "common/store/domains/themes/actions";
 import * as themeSelectors from "common/store/domains/themes/selectors";
 
-import CommandsContext from "common/commands/CommandsContext";
-import newTheme from "common/commands/newTheme";
+import * as swatchSelectors from "common/store/domains/swatches/selectors";
+
+import * as themeBundleSelectors from "common/store/domains/themeBundles/selectors";
 
 import Navbar from "@/components/lib/Navbar";
 import Button from "@/components/lib/forms/Button";
@@ -21,34 +22,40 @@ import "./Sidebar.css";
 const Sidebar = () => {
   const dispatch = useDispatch();
 
-  const doCommand = useContext(CommandsContext);
-
+  const swatchesList = useSelector(swatchSelectors.getThemelessSwatchesList);
   const themeBeingEdited = useSelector(themeSelectors.getEditingTheme);
+
+  const themesList = useSelector(themeBundleSelectors.getThemeBundlesList);
 
   return (
     <div className="Sidebar">
       <div className="Sidebar__body">
         <div className="Sidebar__section">
-          <h3 className="Sidebar__section-title">Swatches</h3>
-          <SwatchesList />
+          <h3 className="Sidebar__section-title">
+            swatches ({swatchesList.length})
+          </h3>
+          <div className="Sidebar__section-body">
+            <SwatchesList />
+          </div>
         </div>
 
         <div className="Sidebar__section">
-          <h3 className="Sidebar__section-title">Themes</h3>
-          <ThemeList />
+          <h3 className="Sidebar__section-title">
+            themes ({themesList.length})
+          </h3>
+          <div className="Sidebar__section-body">
+            <ThemeList />
+          </div>
         </div>
 
-        <div className="Sidebar__section">
-          {themeBeingEdited && <ThemeEditor theme={themeBeingEdited} />}
-
-          <Button
-            onClick={() => {
-              doCommand(newTheme());
-            }}
-          >
-            add theme
-          </Button>
-        </div>
+        {themeBeingEdited && (
+          <div className="Sidebar__section">
+            <h3 className="Sidebar__section-title">edit theme</h3>
+            <div className="Sidebar__section-body">
+              <ThemeEditor theme={themeBeingEdited} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

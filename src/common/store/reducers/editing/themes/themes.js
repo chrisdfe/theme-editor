@@ -15,14 +15,12 @@ const initialState = {
 const themesReducer = createReducer(initialState, {
   [types.EDIT_STARTED]: (state, { theme }) => {
     const byId = {
-      ...state.byId,
       [theme.id]: theme,
     };
 
-    const allIds = [...state.allIds, theme.id];
+    const allIds = [theme.id];
 
     const originalState = {
-      ...state.originalState,
       [theme.id]: theme,
     };
 

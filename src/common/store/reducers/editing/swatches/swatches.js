@@ -15,7 +15,7 @@ const initialState = {
   originalState: {},
 };
 
-const swatchesReducer = createReducer(initialState, {
+const themeActionHandlers = {
   [themeTypes.EDIT_STARTED]: (state, { swatch, swatchColors }) => {
     const swatchColorIds = swatchColors.map(({ id }) => id);
 
@@ -46,7 +46,9 @@ const swatchesReducer = createReducer(initialState, {
   [themeTypes.EDIT_CLEARED]: () => {
     return { ...initialState };
   },
+};
 
+const swatchColorActionHandlers = {
   [swatchColorTypes.ADD_EDITING_SWATCH_COLOR]: (state, { swatchColor }) => {
     const byId = mapValues(state.byId, (swatch) => {
       if (swatchColor.swatchId === swatch.id) {
@@ -65,6 +67,29 @@ const swatchesReducer = createReducer(initialState, {
       byId,
     };
   },
+
+  [swatchColorTypes.REMOVE_EDITING_SWATCH_COLOR]: (state, { id }) => {
+    const byId = mapValues(state.byId, (swatch) => {
+      const swatchColorIds = swatch.swatchColorIds.filter(
+        (swatchColorId) => swatchColorId !== id
+      );
+
+      return {
+        ...swatch,
+        swatchColorIds,
+      };
+    });
+
+    return {
+      ...state,
+      byId,
+    };
+  },
+};
+
+const swatchesReducer = createReducer(initialState, {
+  ...themeActionHandlers,
+  ...swatchColorActionHandlers,
 });
 
 export default swatchesReducer;

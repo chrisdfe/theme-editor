@@ -24,8 +24,6 @@ export const createDirectories = (payload = {}) => (dispatch) => {
     DirectoryModule.create(attributes)
   );
 
-  console.log('createdDirectories', createdDirectories)
-
   dispatch(addDirectories({ directories: createdDirectories }));
 };
 

@@ -113,6 +113,20 @@ const SwatchEditor = () => {
               }
             }}
           />
+
+          <Button
+            onClick={() => {
+              const id = selectedSwatchColorCardId;
+              setSelectedSwatchColorCardId(null);
+              dispatch(
+                swatchColorActions.removeEditingSwatchColorById({
+                  id,
+                })
+              );
+            }}
+          >
+            delete
+          </Button>
         </div>
       )}
 

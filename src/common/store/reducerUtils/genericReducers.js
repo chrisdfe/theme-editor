@@ -35,6 +35,9 @@ export const removeEntityById = (state, id) => omit(state, id);
 
 export const removeEntitiesById = (state, ids) => omit(state, ids);
 
+export const removeEntityIdFromList = (state, id) =>
+  state.filter((otherId) => otherId !== id);
+
 export const updateEntityById = (state, id, attributes) => {
   return {
     ...state,

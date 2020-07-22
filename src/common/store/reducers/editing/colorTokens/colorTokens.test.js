@@ -45,4 +45,6 @@ describe("editing/colorTokenReducer", () => {
       expect(newState).toEqual(expectedState);
     });
   });
+
+  xdescribe("swatchColors/REMOVE_EDITING_SWATCH_COLOR");
 });

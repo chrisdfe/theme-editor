@@ -1,3 +1,5 @@
+import { mapValues } from "lodash";
+
 import {
   createReducer,
   updateEntityById,
@@ -5,6 +7,7 @@ import {
 } from "common/store/reducerUtils";
 
 import * as themeTypes from "common/store/domains/themes/types";
+import * as swatchColorTypes from "common/store/domains/swatchColors/types";
 import * as types from "common/store/domains/colorTokens/types";
 
 const initialState = {
@@ -13,7 +16,7 @@ const initialState = {
   originalState: {},
 };
 
-const colorTokensReducer = createReducer(initialState, {
+const themeActionHandlers = {
   [themeTypes.EDIT_STARTED]: (state, { colorTokens }) => {
     const byId = {
       ...colorTokens.reduce((acc, colorToken) => {
@@ -44,7 +47,9 @@ const colorTokensReducer = createReducer(initialState, {
   [themeTypes.EDIT_CLEARED]: () => {
     return { ...initialState };
   },
+};
 
+const colorTokenActionHandlers = {
   [types.UPDATE_EDITING_COLOR_TOKEN]: (state, { id, attributes }) => {
     const byId = updateEntityById(state.byId, id, attributes);
 
@@ -53,6 +58,27 @@ const colorTokensReducer = createReducer(initialState, {
       byId,
     };
   },
+};
+
+const swatchColorActionHandlers = {
+  [swatchColorTypes.REMOVE_EDITING_SWATCH_COLOR]: (state, { id }) => {
+    return mapValues(state, (colorToken) => {
+      if (colorToken.swatchColorId === id) {
+        return {
+          ...colorToken,
+          swatchColorId: null,
+        };
+      }
+
+      return colorToken;
+    });
+  },
+};
+
+const colorTokensReducer = createReducer(initialState, {
+  ...themeActionHandlers,
+  ...colorTokenActionHandlers,
+  ...swatchColorActionHandlers,
 });
 
 export default colorTokensReducer;

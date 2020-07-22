@@ -123,3 +123,10 @@ export const updateEditingSwatchColor = (payload) => async (dispatch) => {
   const { id, attributes } = payload;
   return dispatch({ type: types.UPDATE_EDITING_SWATCH_COLOR, id, attributes });
 };
+
+export const removeEditingSwatchColorById = ({ id } = {}) => {
+  if (!id) {
+    throw new PayloadError('"id" is required');
+  }
+  return { type: types.REMOVE_EDITING_SWATCH_COLOR, id };
+};

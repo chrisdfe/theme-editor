@@ -3,6 +3,8 @@ import {
   addEntityById,
   updateEntityById,
   updateEntitiesById,
+  removeEntityById,
+  removeEntityIdFromList,
 } from "common/store/reducerUtils";
 
 import * as themeTypes from "common/store/domains/themes/types";
@@ -14,7 +16,7 @@ const initialState = {
   originalState: {},
 };
 
-const swatchColorsReducer = createReducer(initialState, {
+const themeActionHandlers = {
   [themeTypes.EDIT_STARTED]: (state, { swatchColors }) => {
     const byId = swatchColors.reduce((acc, swatchColor) => {
       return {
@@ -39,9 +41,14 @@ const swatchColorsReducer = createReducer(initialState, {
     };
   },
 
+  // Makes the assumption that there is 1 theme being edited at a time
+  [themeTypes.EDIT_CLEARED]: () => {
+    return { ...initialState };
+  },
+};
+
+const swatchColorsActionHandlers = {
   [types.ADD_EDITING_SWATCH_COLOR]: (state, { swatchColor }) => {
-    console.log("addEntityById(state, swatchColor)", state, swatchColor);
-    console.log(addEntityById(state, swatchColor));
     const byId = addEntityById(state.byId, swatchColor);
     const allIds = [...state.allIds, swatchColor.id];
     return { ...state, byId, allIds };
@@ -56,10 +63,21 @@ const swatchColorsReducer = createReducer(initialState, {
     };
   },
 
-  // Makes the assumption that there is 1 theme being edited at a time
-  [themeTypes.EDIT_CLEARED]: () => {
-    return { ...initialState };
+  [types.REMOVE_EDITING_SWATCH_COLOR]: (state, { id }) => {
+    const byId = removeEntityById(state.byId, id);
+    const allIds = removeEntityIdFromList(state.allIds, id);
+
+    return {
+      ...state,
+      byId,
+      allIds,
+    };
   },
+};
+
+const swatchColorsReducer = createReducer(initialState, {
+  ...themeActionHandlers,
+  ...swatchColorsActionHandlers,
 });
 
 export default swatchColorsReducer;

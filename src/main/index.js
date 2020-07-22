@@ -12,7 +12,7 @@ let mainWindow;
 function createMainWindow() {
   const window = new BrowserWindow({
     // frame: false,
-    title: "Goal Scheduler",
+    title: "Theme Editor",
     // titleBarStyle: "hidden",
     // titleBarStyle: "hiddenInset",
     webPreferences: { nodeIntegration: true },

@@ -7,6 +7,7 @@ import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 import {
   createReducer,
   addEntityById,
+  addEntitiesById,
   updateEntityById,
   updateEntitiesById,
 } from "common/store/reducerUtils";
@@ -119,6 +120,20 @@ const themeBundleHandlers = {
         .filter((swatchColor) => swatchColor.swatchId === swatch.id)
         .map(({ id }) => id),
     });
+  },
+
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { swatches, swatchColors }) => {
+    return addEntitiesById(
+      state,
+      swatches.map((swatch) => {
+        return {
+          ...swatch,
+          swatchColorIds: swatchColors
+            .filter((swatchColor) => swatchColor.swatchId === swatch.id)
+            .map(({ id }) => id),
+        };
+      })
+    );
   },
 
   [themeBundleTypes.UPDATE_THEME_BUNDLE]: (state, { swatch }) => {

@@ -1,9 +1,7 @@
-import { isEqual, isEmpty, isPlainObject } from "lodash";
+import { isEqual, isEmpty, diff, isPlainObject } from "lodash";
 
 const objectDiff = (objectA, objectB) => {
   let result = {};
-
-  const compare = (key, valueA, valueB) => {};
 
   Object.keys(objectA).forEach((key) => {
     const valueA = objectA[key];
@@ -18,19 +16,18 @@ const objectDiff = (objectA, objectB) => {
       }
     }
 
+    // TODO - this will currently compare objects, which is not what I want
     if (!isEqual(valueA, valueB)) {
       result[key] = [valueA, valueB];
     }
-
-    compare(key, valueA, valueB);
   });
 
   Object.keys(objectB).forEach((key) => {
     const valueA = objectA[key];
     const valueB = objectB[key];
 
-    if (!valueA) {
-      result[key] = [undefined, valueB];
+    if (!isEqual(valueA, valueB)) {
+      result[key] = [valueA, valueB];
     }
   });
 

@@ -58,6 +58,10 @@ const themeBundleActionHandlers = {
     return addEntitiesById(state, swatchColors);
   },
 
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { swatchColors }) => {
+    return addEntitiesById(state, swatchColors);
+  },
+
   [themeBundleTypes.UPDATE_THEME_BUNDLE]: (state, { swatchColors }) => {
     const idMap = swatchColors.reduce(
       (acc, swatchColor) => ({ ...acc, [swatchColor.id]: swatchColor }),

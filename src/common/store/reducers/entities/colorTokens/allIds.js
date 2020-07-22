@@ -33,6 +33,10 @@ const themeBundleActionHandlers = {
   [themeBundleTypes.ADD_THEME_BUNDLE]: (state, { colorTokens }) => {
     return addEntityIdsToList(state, colorTokens);
   },
+
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { colorTokens }) => {
+    return addEntityIdsToList(state, colorTokens);
+  },
 };
 
 const allIds = createReducer(initialState, {

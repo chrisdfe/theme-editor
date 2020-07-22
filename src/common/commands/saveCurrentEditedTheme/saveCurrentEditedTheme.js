@@ -16,13 +16,8 @@ const saveCurrentEditedTheme = () => async (dispatch, getState) => {
   const themeBundle = themeBundleSelectors.getEditingThemeBundle(state);
   const { theme } = themeBundle;
 
-  const filePath = await themeFs.getNewThemeFilePathFromDialog(theme);
+  return;
 
-  if (!filePath) {
-    return;
-  }
-
-  console.log("filePath", filePath);
   dispatch(themeBundleActions.saveEditedThemeBundle({ filePath }));
 };
 

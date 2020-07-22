@@ -77,6 +77,10 @@ const themeBundleActionHandlers = {
     return addEntitiesById(state, colorTokens);
   },
 
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { colorTokens }) => {
+    return addEntitiesById(state, colorTokens);
+  },
+
   [themeBundleTypes.UPDATE_THEME_BUNDLE]: (state, { colorTokens }) => {
     const idMap = colorTokens.reduce(
       (acc, colorToken) => ({

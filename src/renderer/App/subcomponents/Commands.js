@@ -9,12 +9,12 @@ const Commands = ({ children }) => {
       {({ store }) => {
         const { dispatch, getState } = store;
 
-        const dispatchCommand = async (command) => {
-          command(dispatch, getState);
+        const doCommand = async (command) => {
+          command(dispatch, getState, doCommand);
         };
 
         return (
-          <CommandsContext.Provider value={dispatchCommand}>
+          <CommandsContext.Provider value={doCommand}>
             {children}
           </CommandsContext.Provider>
         );

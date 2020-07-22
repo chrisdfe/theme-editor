@@ -55,9 +55,10 @@ const ThemeEditor = () => {
             setThemeNameValue(e.target.value);
           }}
           onBlur={() => {
-            console.log("onblur");
+            // Probably use debounch instead of onBlur
+            console.log("onblur", themeNameValue);
             dispatch(
-              themeActions.updateTheme({
+              themeActions.updateEditedTheme({
                 id: theme.id,
                 attributes: { name: themeNameValue },
               })

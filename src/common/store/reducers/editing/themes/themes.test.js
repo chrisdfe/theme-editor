@@ -42,4 +42,7 @@ describe("editing/themesReducer", () => {
       expect(newState).toEqual(expectedState);
     });
   });
+
+  xdescribe("EDIT_CLEARED");
+  xdescribe("UPDATE_EDITED_THEME");
 });

@@ -102,10 +102,6 @@ export const addEditingSwatchColor = ({ swatchColor } = {}) => {
     throw new PayloadError('"swatchColor" is required');
   }
 
-  console.log("{ type: types.ADD_EDITING_SWATCH_COLOR, swatchColor }", {
-    type: types.ADD_EDITING_SWATCH_COLOR,
-    swatchColor,
-  });
   return { type: types.ADD_EDITING_SWATCH_COLOR, swatchColor };
 };
 

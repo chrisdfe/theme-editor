@@ -42,6 +42,19 @@ export const getThemeBundlesList = createSelector(
   (state, { allIds }) => allIds.map((id) => getThemeBundleByThemeId(state, id))
 );
 
+export const getThemeBundlesGroupedByDirectoryId = createSelector(
+  getThemeBundlesList,
+  (themeBundles) =>
+    themeBundles.reduce((acc, themeBundle) => {
+      const directoryId = themeBundle.theme.directoryId;
+
+      return {
+        ...acc,
+        [directoryId]: [...(acc[directoryId] || []), themeBundle],
+      };
+    }, {})
+);
+
 export const getEditingThemeBundle = createSelector(
   (state) => state,
   themeSelectors.getEditingTheme,
@@ -89,8 +102,9 @@ export const getEditingThemeBundleOriginalState = createSelector(
 
 export const getEditingThemeBundleDiff = createSelector(
   [getEditingThemeBundleOriginalState, getEditingThemeBundle],
-  (editingThemeBundleOriginalState, editingThemeBundle) =>
-    objectDiff(editingThemeBundleOriginalState, editingThemeBundle)
+  (editingThemeBundleOriginalState, editingThemeBundle) => {
+    return objectDiff(editingThemeBundleOriginalState, editingThemeBundle);
+  }
 );
 
 export const getEditingThemeBundleHasChanges = createSelector(

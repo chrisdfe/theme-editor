@@ -5,9 +5,32 @@
   padding: 0 0 15px;
 }
 
+.ThemeList__directory-group {
+  margin-bottom: 25px;
+}
+
+.ThemeList__directory-group__title {
+  margin: 15px 0;
+  font-size: 9px;
+}
+
+.ThemeList__theme-list {
+  margin: 15px 0;
+}
+
 .ThemeList__theme-list-item {
   display: flex;
   flex-direction: row;
+  /*flex-grow: 1;*/
+  margin-bottom: 10px;
+}
+
+.ThemeList__theme-list-item__body {
+  flex-grow: 1;
+}
+
+.ThemeList__theme-list-filename {
+  font-size: 10px;
 }
 
 .ThemeList__theme-list-item__swatch-color-list {
@@ -22,6 +45,7 @@
 
 .ThemeList__theme-list-item__actions {
   margin-left: auto;
+  text-align: right;
 }
 
 .ThemeList__action-buttons {

@@ -19,25 +19,60 @@ export const addThemeBundle = (payload = {}) => async (dispatch) => {
     required: ["themeBundle"],
   });
 
-  const {
-    theme: themeAttributes,
-    swatch: swatchAttributes,
-    swatchColors: swatchColorAttributesList,
-    colorTokenGroups: colorTokenGroupAttributesList,
-    colorTokens: colorTokenAttributesList,
-  } = payload.themeBundle;
+  const { themeBundle } = payload;
 
-  const themeBundle = ThemeBundle.create({
-    themeAttributes,
-    swatchAttributes,
-    swatchColorAttributesList,
-    colorTokenGroupAttributesList,
-    colorTokenAttributesList,
+  dispatch({ type: types.ADD_THEME_BUNDLE, ...themeBundle });
+};
+
+export const addThemeBundles = (payload = {}) => async (dispatch) => {
+  validateActionPayload(payload, {
+    required: ["themeBundles"],
   });
+  const { themeBundles } = payload;
+
+  // TODO - pull out into a utility function
+  const flattenedThemeBundles = themeBundles.reduce(
+    (acc, themeBundle) => {
+      return {
+        themes: [...acc.themes, themeBundle.theme],
+        swatches: [...acc.swatches, themeBundle.swatch],
+        swatchColors: [...acc.swatchColors, ...themeBundle.swatchColors],
+        colorTokenGroups: [
+          ...acc.colorTokenGroups,
+          ...themeBundle.colorTokenGroups,
+        ],
+        colorTokens: [...acc.colorTokens, ...themeBundle.colorTokens],
+      };
+    },
+    {
+      themes: [],
+      swatches: [],
+      swatchColors: [],
+      colorTokenGroups: [],
+      colorTokens: [],
+    }
+  );
+
+  dispatch({ type: types.ADD_THEME_BUNDLES, ...flattenedThemeBundles });
+};
+
+export const createThemeBundle = (payload = {}) => async (dispatch) => {
+  validateActionPayload(payload, {
+    required: ["themeBundle"],
+  });
+
+  // TODO - this should go in 'createThemeBundle'
+  const themeBundle = ThemeBundle.create(payload.themeBundle);
 
   // TODO - ThemeBundleModule.validate
 
-  dispatch({ type: types.ADD_THEME_BUNDLE, ...themeBundle });
+  dispatch(addThemeBundle({ themeBundle }));
+};
+
+export const createThemeBundles = (payload = {}) => async (dispatch) => {
+  validateActionPayload(payload, {
+    required: ["themeBundles"],
+  });
 };
 
 export const updateThemeBundle = (payload = {}) => async (dispatch) => {

@@ -7,10 +7,14 @@ import * as themeBundleSelectors from "common/store/domains/themeBundles/selecto
 import * as themeActions from "common/store/domains/themes/actions";
 import * as themeSelectors from "common/store/domains/themes/selectors";
 
+import * as directorySelectors from "common/store/domains/directories/selectors";
+import * as DirectoryModule from "common/store/domains/directories/module";
+
 import Button from "@/components/lib/forms/Button";
 
 import CommandsContext from "common/commands/CommandsContext";
 import loadThemeFileFromDialog from "common/commands/loadThemeFileFromDialog";
+import addDirectoriesFromDialog from "common/commands/addDirectoriesFromDialog";
 import createThemeBundleAndBeginEditing from "common/commands/createThemeBundleAndBeginEditing";
 import beginEditingExistingThemeBundle from "common/commands/beginEditingExistingThemeBundle";
 
@@ -19,21 +23,33 @@ import "./ThemeList.css";
 const ThemeBundle = ({ themeBundle }) => {
   const dispatch = useDispatch();
 
-  const { theme, swatchColors } = themeBundle;
+  const { theme, swatchColors, colorTokens } = themeBundle;
 
   const doCommand = useContext(CommandsContext);
+
+  // TODO - memoized selector
+  const colorTokenColors = colorTokens
+    .map((colorToken) =>
+      swatchColors.find(
+        (swatchColor) => swatchColor.id === colorToken.swatchColorId
+      )
+    )
+    .map(({ hex }) => hex);
 
   return (
     <div className="ThemeList__theme-list-item" key={theme.id}>
       <div className="ThemeList__theme-list-item__body">
         <div className="ThemeList__theme-list-item__name">{theme.name}</div>
+        <div className="ThemeList__theme-list-item__filename">
+          {theme.fileName}
+        </div>
 
         <div className="ThemeList__theme-list-item__swatch-color-list">
-          {swatchColors.map((swatchColor) => (
+          {colorTokenColors.map((hex, index) => (
             <div
-              key={swatchColor.id}
+              key={`${index}-${hex}`}
               className="ThemeList__theme-list-item__swatch-color"
-              style={{ backgroundColor: swatchColor.hex }}
+              style={{ backgroundColor: hex }}
             />
           ))}
         </div>
@@ -48,6 +64,14 @@ const ThemeBundle = ({ themeBundle }) => {
         >
           edit
         </Button>
+        <Button
+          onClick={() => {
+            // const { id } = theme;
+            // doCommand(beginEditingExistingThemeBundle({ id }));
+          }}
+        >
+          preview
+        </Button>
       </div>
     </div>
   );
@@ -58,49 +82,68 @@ const ThemeList = () => {
 
   const doCommand = useContext(CommandsContext);
 
-  const themesList = useSelector(themeBundleSelectors.getThemeBundlesList);
+  const themeBundlesGroupedByDirectoryId = useSelector(
+    themeBundleSelectors.getThemeBundlesGroupedByDirectoryId
+  );
+
+  const directoriesList = useSelector(directorySelectors.getDirectoriesList);
+  const themeDirectoriesList = useSelector(
+    directorySelectors.getThemeDirectoriesList
+  );
 
   return (
     <div className="ThemeList">
-      <div className="ThemeList__body">
-        {!themesList.length && <div>no themes.</div>}
-        {themesList.length > 0 &&
-          themesList.map((themeBundle) => (
-            <ThemeBundle key={themeBundle.theme.id} themeBundle={themeBundle} />
-          ))}
+      <div>
+        {themeDirectoriesList.map((directory) => {
+          const themeBundles = themeBundlesGroupedByDirectoryId[directory.id];
+
+          if (!themeBundles) {
+            return null;
+          }
+
+          return (
+            <div className="ThemeList__directory-group" key={directory.id}>
+              <div
+                key={directory.id}
+                className="ThemeList__directory-group__title"
+              >
+                {DirectoryModule.trimFilePath(directory.filePath)}
+              </div>
+
+              <div className="ThemeList__theme-list">
+                {themeBundles.map((themeBundle) => (
+                  <ThemeBundle
+                    key={themeBundle.theme.id}
+                    themeBundle={themeBundle}
+                  />
+                ))}
+              </div>
+
+              {/*
+              <Button
+                onClick={async () => {
+                  doCommand(
+                    addDirectoriesFromDialog({ type: DirectoryModule.TYPES.theme })
+                  );
+                }}
+              >
+                ...
+              </Button>
+              */}
+            </div>
+          );
+        })}
       </div>
 
-      <div className="ThemeList__action-buttons">
-        <Button
-          onClick={async () => {
-            doCommand(loadThemeFileFromDialog());
-          }}
-        >
-          load
-        </Button>
-
-        <Button
-          onClick={() => {
-            doCommand(createThemeBundleAndBeginEditing());
-          }}
-        >
-          create theme
-        </Button>
-      </div>
-
-      {/*
       <Button
         onClick={async () => {
-          console.log("click");
-          const result = await dialog.showOpenDialog({
-            properties: ["openDirectory"],
-          });
-          console.log("result", result);
+          doCommand(
+            addDirectoriesFromDialog({ type: DirectoryModule.TYPES.theme })
+          );
         }}
       >
-        add directory
+        ...
       </Button>
-      */}
     </div>
   );
 };

@@ -121,6 +121,15 @@ export const deleteThemesById = (payload = {}) => async (dispatch) => {
   return dispatch(removeThemesById({ ids }));
 };
 
+export const updateEditedTheme = (payload = {}) => async (dispatch) => {
+  validateActionPayload(payload, { required: ["id", "attributes"] });
+  const { id, attributes } = payload;
+
+  // TODO - ThemeModule.validate();
+
+  return dispatch({ type: types.UPDATE_EDITED_THEME, id, attributes });
+};
+
 export const beginEditingExistingTheme = (payload = {}) => async (
   dispatch,
   getState

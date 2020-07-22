@@ -143,6 +143,26 @@ const themeBundleActionHandlers = {
     };
   },
 
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (
+    state,
+    { colorTokenGroups, colorTokens }
+  ) => {
+    return addEntitiesById(
+      state,
+      colorTokenGroups.map((colorTokenGroup) => {
+        return {
+          ...colorTokenGroup,
+          colorTokenIds: colorTokens
+            .filter(
+              (colorToken) =>
+                colorToken.colorTokenGroupId === colorTokenGroup.id
+            )
+            .map(({ id }) => id),
+        };
+      })
+    );
+  },
+
   [themeBundleTypes.UPDATE_THEME_BUNDLE]: (state, { colorTokenGroups }) => {
     const idMap = colorTokenGroups.reduce(
       (acc, colorTokenGroup) => ({

@@ -1,7 +1,11 @@
 import * as types from "common/store/domains/swatches/types";
 import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 
-import { createReducer, addEntityIdToList } from "common/store/reducerUtils";
+import {
+  createReducer,
+  addEntityIdToList,
+  addEntityIdsToList,
+} from "common/store/reducerUtils";
 
 const initialState = [];
 
@@ -30,6 +34,10 @@ const swatchActionHandlers = {
 const themeBundleActionHandlers = {
   [themeBundleTypes.ADD_THEME_BUNDLE]: (state, { swatch }) => {
     return addEntityIdToList(state, swatch);
+  },
+
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { swatches }) => {
+    return addEntityIdsToList(state, swatches);
   },
 };
 const allIds = createReducer(initialState, {

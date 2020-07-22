@@ -5,6 +5,9 @@ const confirmDiscardingChangesToEditingTheme = (state) => {
   const editingTheme = themeSelectors.getEditingTheme(state);
 
   if (editingTheme) {
+    const diff = themeBundleSelectors.getEditingThemeBundleDiff(state);
+    console.log("diff", diff);
+
     const hasChanges = themeBundleSelectors.getEditingThemeBundleHasChanges(
       state
     );

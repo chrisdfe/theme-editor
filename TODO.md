@@ -14,7 +14,6 @@
 - switch to redux for setTheme
 - Put CalendarGrid and Navbar into subfolders ('misc' and 'layout'? could CalendarGrid a form component)
 - Add local persistence to current theme (so I don't have to keep entering in the same values each time)
-- switch redux state from arrays to an object with id keys
 - nest action payloads inside of a 'payload' object
 - experiment with using react-helmet to insert theme style variables into app
 - stop mocking state in action tests
@@ -28,9 +27,16 @@
 - replace 'omit' with a more performant version (https://levelup.gitconnected.com/omit-is-being-removed-in-lodash-5-c1db1de61eaf)
 - better api for Commands
   - const { saveTheme } = useCommands();
-- Split theme editor out into separate app
 - theme spec
   - defines the colorTokenGroups/what colorTokens each group has
+- fully switch over to namespaced action naming convention ("themes/updated", "themes/editing/updated")
+- Look into abstracting common CRUD actions/reducers out
+- objectDiff is returning the whole object if one of its fields is different - it should just be the field that is different eg
+  { themes: { name: ['theme', 'new theme name'] }}
+  instead of (what it is now)
+  { themes: [{ name: 'theme', ... }, { name: 'new theme name', ... }]}
+- Handle 2 theme files containing the same theme - duplicate id error
+- fix objectDiff tests
 
 ## MVP themeeditor
 
@@ -75,3 +81,5 @@
     in order to be able to perform this diff
 - Save theme to file
 - Load theme from file
+- Split theme editor out into separate app
+- switch redux state from arrays to an object with id keys

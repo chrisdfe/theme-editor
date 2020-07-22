@@ -63,6 +63,10 @@ const themeBundleActionHandlers = {
     return addEntityById(state, theme);
   },
 
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { themes }) => {
+    return addEntitiesById(state, themes);
+  },
+
   [themeBundleTypes.UPDATE_THEME_BUNDLE]: (state, { theme }) => {
     return updateEntityById(state, theme.id, theme);
   },

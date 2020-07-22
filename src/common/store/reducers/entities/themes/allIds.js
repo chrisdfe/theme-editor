@@ -37,6 +37,10 @@ const allIds = createReducer([], {
   [themeBundleTypes.ADD_THEME_BUNDLE]: (state, { theme }) => {
     return addEntityIdToList(state, theme);
   },
+
+  [themeBundleTypes.ADD_THEME_BUNDLES]: (state, { themes }) => {
+    return addEntityIdsToList(state, themes);
+  },
 });
 
 export default allIds;

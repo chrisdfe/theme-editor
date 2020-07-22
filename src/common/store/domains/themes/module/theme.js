@@ -9,6 +9,8 @@ export const create = (attributes) => {
   return {
     id: uuid(),
     name: "untitled theme",
+    directoryId: null,
+    filename: null,
     ...attributes,
   };
 };

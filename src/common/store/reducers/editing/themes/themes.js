@@ -35,6 +35,14 @@ const themesReducer = createReducer(initialState, {
   [types.EDIT_CLEARED]: () => {
     return { ...initialState };
   },
+
+  [types.UPDATE_EDITED_THEME]: (state, { id, attributes }) => {
+    const byId = updateEntityById(state.byId, id, attributes);
+    return {
+      ...state,
+      byId,
+    };
+  },
 });
 
 export default themesReducer;

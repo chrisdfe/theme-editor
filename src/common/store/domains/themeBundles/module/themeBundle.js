@@ -6,26 +6,6 @@ import * as SwatchColorModule from "../../swatchColors/module";
 import * as ColorTokenModule from "../../colorTokens/module";
 import * as ColorTokenGroupModule from "../../colorTokenGroups/module";
 
-// const getDefaultCreateAttributes = () => {
-//   const colorTokenGroup = ColorTokenGroupModule.create({
-//     name: ColorTokenGroupModule.getNextName(),
-//   });
-//   console.log("colorTokenGroup", colorTokenGroup);
-//   const colorTokenGroupAttributesList = [colorTokenGroup];
-//   const colorTokenAttributesList = ColorTokenModule.getDefaultColorTokenNames().map(
-//     (name) =>
-//       ColorTokenModule.create({ colorTokenGroupId: colorTokenGroup.id, name })
-//   );
-
-//   return {
-//     themeAttributes: {},
-//     swatchAttributes: {},
-//     swatchColorAttributesList: [],
-//     colorTokenGroupAttributesList,
-//     colorTokenAttributesList,
-//   };
-// };
-
 export const create = (params = {}) => {
   const {
     themeAttributes = {},

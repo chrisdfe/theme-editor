@@ -20,6 +20,8 @@ export const createGenericStateSlice = (key) => ({
 export const createMockTheme = (attributes) => ({
   id: 1,
   name: "mock theme",
+  directoryId: null,
+  filename: null,
   ...attributes,
 });
 
@@ -49,6 +51,12 @@ export const createMockColorToken = (attributes) => ({
   id: 1,
   colorTokenGroupId: 1,
   name: "background",
+  ...attributes,
+});
+
+export const createMockDirectory = (attributes) => ({
+  id: 1,
+  path: "/test-directory-path/",
   ...attributes,
 });
 

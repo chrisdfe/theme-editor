@@ -1,6 +1,6 @@
 import objectDiff from "./objectDiff";
 
-describe("utils", () => {
+xdescribe("utils", () => {
   describe("#objectDiff", () => {
     describe("matching objects", () => {
       describe("returns an empty object", () => {

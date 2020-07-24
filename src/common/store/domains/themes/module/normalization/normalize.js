@@ -5,6 +5,8 @@ const normalize = (theme) => {
   const { swatchColors } = swatch;
 
   const cleanedTheme = omit(theme, "swatch", "colorTokenGroups");
+
+  // TODO - use SwatchModule.normalize (except with added themeId)
   const cleanedSwatch = {
     ...omit(swatch, "swatchColors"),
     themeId: theme.id,

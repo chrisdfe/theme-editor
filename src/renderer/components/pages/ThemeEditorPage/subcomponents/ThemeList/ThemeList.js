@@ -86,7 +86,6 @@ const ThemeList = () => {
     themeBundleSelectors.getThemeBundlesGroupedByDirectoryId
   );
 
-  const directoriesList = useSelector(directorySelectors.getDirectoriesList);
   const themeDirectoriesList = useSelector(
     directorySelectors.getThemeDirectoriesList
   );

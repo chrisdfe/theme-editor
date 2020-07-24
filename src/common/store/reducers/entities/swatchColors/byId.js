@@ -5,35 +5,28 @@ import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 
 import {
   createReducer,
+  setEntitiesById,
+  addEntityById,
   addEntitiesById,
   updateEntityById,
   updateEntitiesById,
+  removeEntityById,
+  removeEntitiesById,
 } from "common/store/reducerUtils";
 
 export const initialState = {};
 
 const swatchColorActionHandlers = {
   [types.SET_SWATCH_COLORS]: (state, { swatchColors }) => {
-    return swatchColors.reduce(
-      (acc, swatchColor) => ({ ...acc, [swatchColor.id]: swatchColor }),
-      {}
-    );
+    return setEntitiesById(state, swatchColors);
   },
 
   [types.ADD_SWATCH_COLOR]: (state, { swatchColor }) => {
-    return {
-      ...state,
-      [swatchColor.id]: swatchColor,
-    };
+    return addEntityById(state, swatchColor);
   },
 
   [types.ADD_SWATCH_COLORS]: (state, { swatchColors }) => {
-    return {
-      ...state,
-      ...swatchColors.reduce((acc, swatchColor) => {
-        return { ...acc, [swatchColor.id]: swatchColor };
-      }, {}),
-    };
+    return addEntitiesById(state, swatchColors);
   },
 
   [types.UPDATE_SWATCH_COLOR]: (state, { id, attributes }) => {
@@ -45,11 +38,11 @@ const swatchColorActionHandlers = {
   },
 
   [types.REMOVE_SWATCH_COLOR]: (state, { id }) => {
-    return omit(state, [id]);
+    return removeEntityById(state, id);
   },
 
   [types.REMOVE_SWATCH_COLORS]: (state, { ids }) => {
-    return omit(state, ids);
+    return removeEntitiesById(state, ids);
   },
 };
 

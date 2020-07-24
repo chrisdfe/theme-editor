@@ -1,0 +1,56 @@
+{
+    "swatch": {
+        "id": "79a00957-702c-4a19-b99f-24791261792f",
+        "name": "Peacocks In Space",
+        "swatchColors": [
+            {
+                "id": "b106900c-7b62-4bf3-9582-c19634d22f2a",
+                "hex": "#2b303b"
+            },
+            {
+                "id": "528b108d-7756-4ebf-9760-c1ffdb2f5722",
+                "hex": "#f8f8f0"
+            },
+            {
+                "id": "9528ee6c-3b02-4ef8-b64f-0e1f8d6ffed7",
+                "hex": "#dee3ec"
+            },
+            {
+                "id": "9ea8c74d-7a89-45cf-bd4a-a7220eaa258b",
+                "hex": "#3b3a32"
+            },
+            {
+                "id": "f69a7279-b352-4485-a1dc-230f93a10ca3",
+                "hex": "#272b34"
+            },
+            {
+                "id": "a48d752b-dc15-42d3-95d1-b568421dd53e",
+                "hex": "#26A6A6"
+            },
+            {
+                "id": "e4e0a546-d56b-4206-9dda-0b42f010a7eb",
+                "hex": "#ffffff"
+            },
+            {
+                "id": "7f1591d5-09b1-4b60-b1d1-3f95b0acb2bf",
+                "hex": "#ffe792"
+            },
+            {
+                "id": "f08ee12c-5e18-4da9-b36d-54fd14ada1fc",
+                "hex": "#000000"
+            },
+            {
+                "id": "42be371c-2827-4922-a4fe-c77ed218e6e1",
+                "hex": "#222218"
+            },
+            {
+                "id": "5ba80a63-37d9-4d65-8e5a-63f06d81b287",
+                "hex": "#9d550fb0"
+            },
+            {
+                "id": "64c0a86a-77a4-4d1b-9a38-52083c7a9e10",
+                "hex": "#FF5D38"
+            }
+        ]
+    }
+}

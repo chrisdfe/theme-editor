@@ -7,38 +7,28 @@ import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 
 import {
   createReducer,
+  setEntitiesById,
+  addEntityById,
   addEntitiesById,
   updateEntityById,
   updateEntitiesById,
+  removeEntityById,
+  removeEntitiesById,
 } from "common/store/reducerUtils";
 
 const initialState = {};
 
 const colorTokenActionHandlers = {
   [types.SET_COLOR_TOKENS]: (state, { colorTokens }) => {
-    return colorTokens.reduce((acc, colorToken) => {
-      return {
-        ...acc,
-        [colorToken.id]: colorToken,
-      };
-    }, {});
+    return setEntitiesById(state, colorTokens);
   },
 
   [types.ADD_COLOR_TOKEN]: (state, { colorToken }) => {
-    return {
-      ...state,
-      [colorToken.id]: colorToken,
-    };
+    return addEntityById(state, colorToken);
   },
 
   [types.ADD_COLOR_TOKENS]: (state, { colorTokens }) => {
-    return {
-      ...state,
-      ...colorTokens.reduce(
-        (acc, colorToken) => ({ ...acc, [colorToken.id]: colorToken }),
-        {}
-      ),
-    };
+    return addEntitiesById(state, colorTokens);
   },
 
   [types.UPDATE_COLOR_TOKEN]: (state, { id, attributes }) => {
@@ -50,11 +40,11 @@ const colorTokenActionHandlers = {
   },
 
   [types.REMOVE_COLOR_TOKEN]: (state, { id }) => {
-    return omit(state, id);
+    return removeEntityById(state, id);
   },
 
   [types.REMOVE_COLOR_TOKENS]: (state, { ids }) => {
-    return omit(state, ids);
+    return removeEntitiesById(state, ids);
   },
 };
 

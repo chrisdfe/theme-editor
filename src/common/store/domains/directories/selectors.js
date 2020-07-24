@@ -16,3 +16,11 @@ export const getThemeDirectoriesList = createSelector(
       (directory) => directory.type === DirectoryModule.TYPES.theme
     )
 );
+
+export const getSwatchDirectoriesList = createSelector(
+  getDirectoriesList,
+  (directories) =>
+    directories.filter(
+      (directory) => directory.type === DirectoryModule.TYPES.swatch
+    )
+);

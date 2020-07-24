@@ -1,0 +1,36 @@
+{
+    "swatch": {
+        "id": "6767eef6-cf09-407f-8a0f-76716c505576",
+        "name": "Monokai Datashat Edit",
+        "swatchColors": [
+            {
+                "id": "f1f501b2-4e88-4d43-bae3-d81cb0c14746",
+                "hex": "#00303e"
+            },
+            {
+                "id": "e7966c9e-4ce0-429e-8e0b-ffb9d94c1d9b",
+                "hex": "#F8F8F0"
+            },
+            {
+                "id": "a9eee7a6-1c57-4928-aede-a028169a260a",
+                "hex": "#F8F8F2"
+            },
+            {
+                "id": "16592dcb-e354-46c0-8041-9a8195c5d10a",
+                "hex": "#00617d"
+            },
+            {
+                "id": "2e752c40-3b5a-4af6-98aa-2ee17d962547",
+                "hex": "#ff5efb"
+            },
+            {
+                "id": "bddb1c32-d521-4b57-9035-6a0f8e5f198e",
+                "hex": "#000000"
+            },
+            {
+                "id": "21069431-fbbd-4ea6-b964-d249c7ad92c6",
+                "hex": "#0096c1"
+            }
+        ]
+    }
+}

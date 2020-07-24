@@ -37,6 +37,7 @@
   { themes: [{ name: 'theme', ... }, { name: 'new theme name', ... }]}
 - Handle 2 theme files containing the same theme - duplicate id error
 - fix objectDiff tests
+- Change 'swatches' to 'swatchGroup' and 'swatchColor' to 'swatch'
 
 ## MVP themeeditor
 

@@ -7,6 +7,7 @@ const denormalize = ({
   colorTokenGroups,
   colorTokens,
 }) => {
+  // TODO - use SwatchModule.denormalize (except I still need to omit 'themeId' here)
   const cleanedSwatchColors = swatchColors.map((swatchColor) =>
     omit(swatchColor, "swatchId")
   );

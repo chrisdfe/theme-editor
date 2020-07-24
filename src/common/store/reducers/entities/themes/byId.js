@@ -6,6 +6,7 @@ import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 
 import {
   createReducer,
+  setEntitiesById,
   addEntityById,
   addEntitiesById,
   updateEntityById,
@@ -25,12 +26,7 @@ const themeActionHandlers = {
   },
 
   [types.SET_THEMES]: (state, { themes }) => {
-    return themes.reduce((acc, theme) => {
-      return {
-        ...acc,
-        [theme.id]: theme,
-      };
-    }, {});
+    return setEntitiesById(state, themes);
   },
 
   [types.ADD_THEME]: (state, { theme }) => {

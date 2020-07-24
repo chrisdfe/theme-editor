@@ -1,4 +1,4 @@
-import { omit, mapValues, reject } from "lodash";
+import { omit, mapValues } from "lodash";
 
 import * as types from "common/store/domains/swatches/types";
 import * as swatchColorTypes from "common/store/domains/swatchColors/types";
@@ -6,37 +6,26 @@ import * as themeBundleTypes from "common/store/domains/themeBundles/types";
 
 import {
   createReducer,
+  setEntitiesById,
   addEntityById,
   addEntitiesById,
   updateEntityById,
   updateEntitiesById,
+  removeEntityById,
+  removeEntitiesById,
 } from "common/store/reducerUtils";
 
 const swatchTypesHandlers = {
   [types.SET_SWATCHES]: (state, { swatches }) => {
-    return swatches.reduce(
-      (acc, swatch) => ({ ...acc, [swatch.id]: swatch }),
-      {}
-    );
+    return setEntitiesById(state, swatches);
   },
 
   [types.ADD_SWATCH]: (state, { swatch }) => {
-    return {
-      ...state,
-      [swatch.id]: swatch,
-    };
+    return addEntityById(state, swatch);
   },
 
-  [types.ADD_SWATCHES]: (state, payload) => {
-    const { swatches } = payload;
-
-    return {
-      ...state,
-      ...swatches.reduce(
-        (acc, swatch) => ({ ...acc, [swatch.id]: swatch }),
-        {}
-      ),
-    };
+  [types.ADD_SWATCHES]: (state, { swatches }) => {
+    return addEntitiesById(state, swatches);
   },
 
   [types.UPDATE_SWATCH]: (state, { id, attributes }) => {
@@ -48,11 +37,11 @@ const swatchTypesHandlers = {
   },
 
   [types.REMOVE_SWATCH]: (state, { id }) => {
-    return omit(state, id);
+    return removeEntityById(state, id);
   },
 
   [types.REMOVE_SWATCHES]: (state, { ids }) => {
-    return omit(state, ids);
+    return removeEntitiesById(state, ids);
   },
 };
 
@@ -86,9 +75,8 @@ const swatchColorTypesHandlers = {
 
   [swatchColorTypes.REMOVE_SWATCH_COLOR]: (state, { id }) => {
     return mapValues(state, (swatch) => {
-      const swatchColorIds = reject(
-        swatch.swatchColorIds,
-        (swatchColorId) => swatchColorId === id
+      const swatchColorIds = swatch.swatchColorIds.filter(
+        (swatchColorId) => swatchColorId !== id
       );
 
       return {
@@ -100,8 +88,8 @@ const swatchColorTypesHandlers = {
 
   [swatchColorTypes.REMOVE_SWATCH_COLORS]: (state, { ids }) => {
     return mapValues(state, (swatch) => {
-      const swatchColorIds = reject(swatch.swatchColorIds, (id) =>
-        ids.includes(id)
+      const swatchColorIds = swatch.swatchColorIds.filter(
+        (id) => !ids.includes(id)
       );
 
       return {

@@ -54,33 +54,6 @@ export const createSwatch = ({ swatch, swatchColors } = {}) => async (
   }
 };
 
-// TODO
-export const fetchSwatches = () => async (dispatch) => {
-  const response = await swatchApi.fetchSwatches();
-  // Convert swatch api 'response' shape into action payload shpe
-  const { swatches, swatchColors } = response.reduce(
-    (acc, swatchData) => {
-      const { name, colors } = swatchData;
-
-      const newSwatch = SwatchModule.create({ name });
-      const newSwatchColors = colors.map((color) =>
-        SwatchColorModule.create({ hex: color, swatchId: newSwatch.id })
-      );
-
-      return {
-        swatches: [...acc.swatches, newSwatch],
-        swatchColors: [...acc.swatchColors, ...newSwatchColors],
-      };
-    },
-    { swatches: [], swatchColors: [] }
-  );
-
-  await dispatch(addSwatches({ swatches }));
-  return await dispatch(swatchColorActions.addSwatchColors({ swatchColors }));
-
-  // return dispatch(createSwatches({ swatches }));
-};
-
 export const createSwatchForTheme = ({ theme, attributes } = {}) => async (
   dispatch
 ) => {

@@ -3,6 +3,9 @@ import { omit, mapValues } from "lodash";
 export const getEntityList = (state) =>
   state.allIds.map((id) => state.byId[id]);
 
+export const setEntitiesById = (state, entities) =>
+  entities.reduce((acc, entity) => ({ ...acc, [entity.id]: entity }), {});
+
 export const addEntityById = (state, entity) => {
   return {
     ...state,
@@ -10,10 +13,16 @@ export const addEntityById = (state, entity) => {
   };
 };
 
-export const addEntityIdToList = (state, entity) => [...state, entity.id];
+export const addEntityIdToList = (state, entity) => {
+  if (state.includes(entity.id)) {
+    return state;
+  }
+
+  return [...state, entity.id];
+};
 
 export const addEntityIdsToList = (state, entities) => {
-  const ids = entities.map(({ id }) => id);
+  const ids = entities.map(({ id }) => id).filter((id) => !state.includes(id));
   return [...state, ...ids];
 };
 

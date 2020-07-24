@@ -10,6 +10,63 @@ import * as themeFs from "common/store/domains/themes/fs";
 
 import * as themeBundleActions from "common/store/domains/themeBundles/actions";
 
+import * as swatchFs from "common/store/domains/swatches/fs";
+import * as swatchActions from "common/store/domains/swatches/actions";
+
+import * as swatchColorActions from "common/store/domains/swatchColors/actions";
+
+const addThemeBundles = async (entityFilePaths, dispatch) => {
+  const themeBundles = await Promise.all(
+    entityFilePaths.map(async ({ directory, fileName, fullFilePath }) => {
+      const themeBundle = await themeFs.loadThemeFile(fullFilePath);
+      return {
+        ...themeBundle,
+        theme: {
+          ...themeBundle.theme,
+          // TODO - think about whether this should live in a separate
+          //        lookup table or not (e.g themeDirectories)
+          directoryId: directory.id,
+          fileName,
+          fullFilePath,
+        },
+      };
+    })
+  );
+
+  // TODO - addOrUpdate
+  return dispatch(themeBundleActions.addThemeBundles({ themeBundles }));
+};
+
+const addSwatches = async (entityFilePaths, dispatch) => {
+  const swatchBundles = await Promise.all(
+    entityFilePaths.map(async ({ directory, fileName, fullFilePath }) => {
+      const swatchBundle = await swatchFs.loadSwatchFile(fullFilePath);
+
+      return {
+        ...swatchBundle,
+        swatch: {
+          ...swatchBundle.swatch,
+          // TODO - think about whether this should live in a separate
+          //        lookup table or not (e.g swatchDirectories)
+          directoryId: directory.id,
+          fileName,
+          fullFilePath,
+        },
+      };
+    })
+  );
+
+  const swatches = swatchBundles.map(({ swatch }) => swatch);
+  const swatchColors = swatchBundles.reduce(
+    (acc, { swatchColors }) => [...acc, ...swatchColors],
+    []
+  );
+
+  // TODO - addOrUpdate
+  await dispatch(swatchColorActions.addSwatchColors({ swatchColors }));
+  await dispatch(swatchActions.addSwatches({ swatches }));
+};
+
 const scanDirectoriesAndAddEntities = (payload = {}) => async (
   dispatch,
   getState
@@ -31,7 +88,7 @@ const scanDirectoriesAndAddEntities = (payload = {}) => async (
     })
   );
 
-  const themeFilePaths = directoriesWithFiles.reduce(
+  const entityFilePaths = directoriesWithFiles.reduce(
     (acc, { directory, files }) => {
       const directoryFiles = files.map((file) => ({
         directory,
@@ -43,26 +100,13 @@ const scanDirectoriesAndAddEntities = (payload = {}) => async (
     []
   );
 
-  const themeBundles = await Promise.all(
-    themeFilePaths.map(async ({ directory, fileName, fullFilePath }) => {
-      const themeBundle = await themeFs.loadThemeFile(fullFilePath);
-      return {
-        ...themeBundle,
-        theme: {
-          ...themeBundle.theme,
-          // TODO - think about whether this should live in a separate
-          //        lookup table or not (e.g themeDirectories)
-          directoryId: directory.id,
-          fileName,
-          fullFilePath,
-        },
-      };
-    })
-  );
+  if (type === DirectoryModule.TYPES.theme) {
+    return addThemeBundles(entityFilePaths, dispatch, getState);
+  }
 
-  console.log("themeBundles", themeBundles);
-  // TODO - addOrUpdate
-  return dispatch(themeBundleActions.addThemeBundles({ themeBundles }));
+  if (type === DirectoryModule.TYPES.swatch) {
+    return addSwatches(entityFilePaths, dispatch, getState);
+  }
 };
 
 export default scanDirectoriesAndAddEntities;

@@ -1,3 +1,4 @@
+const uuid = require("uuid").v4;
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
@@ -30,11 +31,6 @@ const getThemeFileContents = async (filename) => {
   return contents;
 };
 
-const outputParsedTheme = async (filename, contents) => {
-  const fullFilepath = path.resolve(OUTPUT_PATH, filename);
-  await writeFile(fullFilepath, contents);
-};
-
 const buildJSONFromTree = (branch, tagName = "dict") => {
   if (tagName === "array") {
     // Assume every array child is going to be a 'dict', at this point
@@ -62,6 +58,7 @@ const buildJSONFromTree = (branch, tagName = "dict") => {
   }, {});
 };
 
+// sublime theme -> denormalized swatch
 const parseSublimeTheme = async (filename) => {
   const contents = await getThemeFileContents(filename);
   const dom = new JSDOM(contents, { contentType: "text/xml" });
@@ -71,29 +68,47 @@ const parseSublimeTheme = async (filename) => {
 
   const result = buildJSONFromTree(topLevelChildren);
 
+  const { name } = result;
   const settings = result.settings[0].settings;
-  const justColors = uniq(
+
+  const colors = uniq(
     Object.keys(settings)
       .map((key) => settings[key])
       .filter(isHex)
   );
 
-  const outputFilename = filename.replace(".tmTheme", ".json");
-  const jsonifiedResult = JSON.stringify(justColors, null, 4);
-  await outputParsedTheme(outputFilename, jsonifiedResult);
+  const swatchColors = colors.map((hex) => ({ id: uuid(), hex }));
+
+  const swatch = {
+    id: uuid(),
+    name,
+    swatchColors,
+  };
+
+  return swatch;
+};
+
+const writeParsedTheme = async (filename, contents) => {
+  const fullFilepath = path.resolve(OUTPUT_PATH, filename);
+  await writeFile(fullFilepath, contents);
+};
+
+const parseSublimeThemeAndWrite = async (filename) => {
+  const swatch = await parseSublimeTheme(filename);
+  const outputFilename = filename.replace(".tmTheme", ".swatch.json");
+  const fileContents = { swatch };
+  const stringifiedContents = JSON.stringify(fileContents, null, 4);
+  await writeParsedTheme(outputFilename, stringifiedContents);
 };
 
 const run = async () => {
   // const filename = "monokai.tmTheme";
   const sublimeThemes = await readdir(SUBLIME_SWATCHES_BASE_PATH);
-  const promises = sublimeThemes
-    // .map((filename) => path.join(SUBLIME_SWATCHES_BASE_PATH, filename))
-    .map((fullFilename) => parseSublimeTheme(fullFilename));
+  const promises = sublimeThemes.map((fullFilename) =>
+    parseSublimeThemeAndWrite(fullFilename)
+  );
 
   await Promise.all(promises);
-
-  // parseSublimeTheme(filename);
-  // 2) generate just a de-duped array of colors to create a swatch out of
 
   console.log("done.");
 };

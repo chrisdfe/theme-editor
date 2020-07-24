@@ -28,7 +28,7 @@ const ThemeEditorPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(swatchActions.fetchSwatches());
+    // dispatch(swatchActions.fetchSwatches());
   }, []);
 
   return (

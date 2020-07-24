@@ -35,6 +35,8 @@ export const createDefaultSwatchColorsForSwatch = ({ swatch }) =>
 export const validate = (attributes, allSwatches) => {
   const result = {};
 
+  // TODO - first key should be attribute name - e.g
+  // { errors: { name: ['required'] } }
   REQUIRED_FIELDS.forEach((fieldName) => {
     if (!attributes[fieldName]) {
       update(result, "errors.required", (required) => [

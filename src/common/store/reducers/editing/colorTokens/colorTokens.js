@@ -7,12 +7,15 @@ import {
   updateEntityById,
   updateEntitiesById,
   removeEntityById,
+  removeEntitiesById,
   removeEntityIdFromList,
+  removeEntityIdsFromList,
 } from "common/store/reducerUtils";
 
 import * as themeTypes from "common/store/domains/themes/types";
 import * as swatchColorTypes from "common/store/domains/swatchColors/types";
 import * as types from "common/store/domains/colorTokens/types";
+import * as colorTokenGroupTypes from "common/store/domains/colorTokenGroups/types";
 
 const initialState = {
   byId: {},
@@ -101,10 +104,29 @@ const swatchColorActionHandlers = {
   },
 };
 
+const colorTokenGroupActionHandlers = {
+  [colorTokenGroupTypes.REMOVE_EDITING_COLOR_TOKEN_GROUP]: (state, { id }) => {
+    console.log("reducer", id);
+    const childColorTokenIds = state.allIds.filter((colorTokenId) => {
+      return state.byId[colorTokenId].colorTokenGroupId === id;
+    });
+    console.log("childColorTokenIds", childColorTokenIds);
+    const byId = removeEntitiesById(state.byId, childColorTokenIds);
+    const allIds = removeEntityIdsFromList(state.allIds, childColorTokenIds);
+
+    return {
+      ...state,
+      byId,
+      allIds,
+    };
+  },
+};
+
 const colorTokensReducer = createReducer(initialState, {
   ...themeActionHandlers,
   ...colorTokenActionHandlers,
   ...swatchColorActionHandlers,
+  ...colorTokenGroupActionHandlers,
 });
 
 export default colorTokensReducer;

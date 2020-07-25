@@ -97,7 +97,7 @@ const ColorToken = ({ colorToken, swatch }) => {
           );
         }}
       >
-        remove
+        - delete
       </Button>
     </div>
   );

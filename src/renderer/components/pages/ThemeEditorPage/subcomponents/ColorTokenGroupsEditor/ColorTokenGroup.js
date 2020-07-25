@@ -101,6 +101,20 @@ const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
           >
             + add color token group
           </Button>
+
+          <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
+            <Button
+              onClick={() => {
+                dispatch(
+                  colorTokenGroupActions.deleteEditingColorTokenGroupById({
+                    id: colorTokenGroup.id,
+                  })
+                );
+              }}
+            >
+              - delete
+            </Button>
+          </div>
         </div>
       </div>
     </div>

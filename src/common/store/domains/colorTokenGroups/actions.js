@@ -145,3 +145,17 @@ export const updateEditingColorTokenGroup = (payload = {}) => {
   const { id, attributes } = payload;
   return { type: types.UPDATE_EDITING_COLOR_TOKEN_GROUP, id, attributes };
 };
+
+export const removeEditingColorTokenGroupById = (payload = {}) => {
+  validateActionPayload(payload, { required: ["id"] });
+  const { id } = payload;
+  return { type: types.REMOVE_EDITING_COLOR_TOKEN_GROUP, id };
+};
+
+export const deleteEditingColorTokenGroupById = (payload = {}) => (
+  dispatch
+) => {
+  validateActionPayload(payload, { required: ["id"] });
+  const { id } = payload;
+  return dispatch(removeEditingColorTokenGroupById({ id }));
+};

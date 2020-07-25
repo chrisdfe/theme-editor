@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import { validateTheme } from "common/themes/ThemeLoader";
 
-import Navbar from "@/components/lib/Navbar";
 import Textarea from "@/components/lib/forms/Textarea";
 import Button from "@/components/lib/forms/Button";
 import * as Page from "@/components/lib/layout/pages";
+import Navbar from "@/components/lib/layout/navbar/Navbar";
 
 import "./ThemeFileValidatorPage.css";
 

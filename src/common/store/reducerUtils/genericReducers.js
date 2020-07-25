@@ -68,3 +68,6 @@ export const removeEntitiesById = (state, ids) => omit(state, ids);
 
 export const removeEntityIdFromList = (state, id) =>
   state.filter((otherId) => otherId !== id);
+
+export const removeEntityIdsFromList = (state, ids) =>
+  state.filter((otherId) => !ids.includes(otherId));

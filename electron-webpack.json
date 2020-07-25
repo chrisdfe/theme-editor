@@ -5,6 +5,7 @@
     "react-redux",
     "react-hot-loader",
     "react-router-dom",
-    "downshift"
+    "downshift",
+    "react-use"
   ]
 }

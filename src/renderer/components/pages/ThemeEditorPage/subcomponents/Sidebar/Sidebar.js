@@ -13,12 +13,13 @@ import * as themeBundleSelectors from "common/store/domains/themeBundles/selecto
 import CommandsContext from "common/commands/CommandsContext";
 import createThemeBundleAndBeginEditing from "common/commands/createThemeBundleAndBeginEditing";
 
-import Navbar from "@/components/lib/Navbar";
 import Button from "@/components/lib/forms/Button";
 
 import SwatchesList from "../SwatchesList";
 import ThemeList from "../ThemeList";
 import ThemeEditor from "../ThemeEditor";
+
+import SidebarSection from "./SidebarSection";
 
 import "./Sidebar.css";
 
@@ -35,26 +36,16 @@ const Sidebar = () => {
   return (
     <div className="Sidebar">
       <div className="Sidebar__body">
-        <div className="Sidebar__section">
-          <h3 className="Sidebar__section-title">
-            swatches ({swatchesList.length})
-          </h3>
-          <div className="Sidebar__section-body">
-            <SwatchesList />
-          </div>
-        </div>
+        <SidebarSection title={`swatches (${swatchesList.length})`}>
+          <SwatchesList />
+        </SidebarSection>
 
-        <div className="Sidebar__section">
-          <h3 className="Sidebar__section-title">
-            themes ({themesList.length})
-          </h3>
-          <div className="Sidebar__section-body">
-            <ThemeList />
-          </div>
-        </div>
+        <SidebarSection title={`themes (${themesList.length})`}>
+          <ThemeList />
+        </SidebarSection>
 
         {!themeBeingEdited && (
-          <div className="Sidebar__section">
+          <SidebarSection>
             <Button
               onClick={() => {
                 doCommand(createThemeBundleAndBeginEditing());
@@ -62,15 +53,13 @@ const Sidebar = () => {
             >
               + new theme
             </Button>
-          </div>
+          </SidebarSection>
         )}
+
         {themeBeingEdited && (
-          <div className="Sidebar__section">
-            <h3 className="Sidebar__section-title">edit theme</h3>
-            <div className="Sidebar__section-body">
-              <ThemeEditor theme={themeBeingEdited} />
-            </div>
-          </div>
+          <SidebarSection title="edit theme">
+            <ThemeEditor theme={themeBeingEdited} />
+          </SidebarSection>
         )}
       </div>
     </div>

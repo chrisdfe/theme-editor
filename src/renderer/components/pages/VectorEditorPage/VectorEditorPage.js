@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { isEmpty } from "lodash";
 
-import Navbar from "@/components/lib/Navbar";
-
 import * as Page from "@/components/lib/layout/pages";
+import Navbar from "@/components/lib/layout/navbar/Navbar";
 
 import "./VectorEditorPage.css";
 

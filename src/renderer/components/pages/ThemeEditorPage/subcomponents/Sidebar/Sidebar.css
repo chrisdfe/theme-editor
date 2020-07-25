@@ -6,12 +6,33 @@
 }
 
 .Sidebar__section {
-  padding: 5px 20px 25px;
+  padding: 5px 20px;
+}
+
+.Sidebar__section-header {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--f_high);
+  cursor: pointer;
+}
+
+.Sidebar__section-header-toggle-icon {
+  margin-left: auto;
 }
 
 .Sidebar__section-title {
-  padding: 0 0 5px;
-  border-bottom: 1px solid var(--f_high);
-  margin: 0 0 15px;
+  padding: 0;
+  margin: 0;
   font-size: 14px;
+}
+
+.Sidebar__section-body {
+  padding: 15px 7px;
+}
+
+.Sidebar__section-body--is-open {
+}
+
+.Sidebar__section-body--is-closed {
+  display: none;
 }

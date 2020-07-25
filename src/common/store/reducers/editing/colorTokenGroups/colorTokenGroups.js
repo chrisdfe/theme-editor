@@ -4,6 +4,8 @@ import {
   addEntityById,
   addEntityIdToList,
   updateEntityById,
+  removeEntityById,
+  removeEntityIdFromList,
 } from "common/store/reducerUtils";
 
 import * as themeTypes from "common/store/domains/themes/types";
@@ -82,6 +84,17 @@ const colorTokenGroupActionHandlers = {
     return {
       ...state,
       byId,
+    };
+  },
+
+  [types.REMOVE_EDITING_COLOR_TOKEN_GROUP]: (state, { id }) => {
+    const byId = removeEntityById(state.byId, id);
+    const allIds = removeEntityIdFromList(state.allIds, id);
+
+    return {
+      ...state,
+      byId,
+      allIds,
     };
   },
 };

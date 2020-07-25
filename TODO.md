@@ -20,7 +20,6 @@
 - nest entities inside of editing one more level (editing/entities), to separate them from lookup tables etc
 - Write tests for the experimental copy/editing stuff I threw together
 - Expand/collapse accordions
-- 'themeBundle' actions - 'addThemeBundle', 'types.ADD_THEME_BUNDLE' etc
 - Change over to new theme format
   - white/black theme
   - black/white theme
@@ -38,6 +37,9 @@
 - Handle 2 theme files containing the same theme - duplicate id error
 - fix objectDiff tests
 - Change 'swatches' to 'swatchGroup' and 'swatchColor' to 'swatch'
+- Debounced TextInput
+- Split byId/allIds in editing reducers up into separate files like they are in entities
+- Look into reducing duplication between editing/entities reducers (i.e just pull things out into functions that both can import)
 
 ## MVP themeeditor
 
@@ -84,3 +86,4 @@
 - Load theme from file
 - Split theme editor out into separate app
 - switch redux state from arrays to an object with id keys
+- 'themeBundle' actions - 'addThemeBundle', 'types.ADD_THEME_BUNDLE' etc

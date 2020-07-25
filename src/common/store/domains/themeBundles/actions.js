@@ -221,6 +221,5 @@ export const saveEditedThemeBundle = (payload = {}) => async (
 };
 
 export const cancelEditingThemeBundle = (payload = {}) => async (dispatch) => {
-  console.log("themeTypes.EDIT_CLEARED", themeTypes.EDIT_CLEARED);
   dispatch({ type: themeTypes.EDIT_CLEARED });
 };

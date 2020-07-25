@@ -35,21 +35,23 @@ export const create = (params = {}) => {
     );
   }
 
-  let colorTokenGroups;
-  let colorTokens;
-  if (!colorTokenGroupAttributesList) {
-    ({ colorTokenGroups, colorTokens } = ColorTokenGroupModule.createDefault({
-      theme,
-    }));
-  } else {
-    colorTokenGroups = colorTokenGroupAttributesList.map((attributes) =>
-      ColorTokenGroupModule.create(attributes)
-    );
+  // let colorTokenGroups;
+  // let colorTokens;
+  // if (!colorTokenGroupAttributesList) {
+  //   ({ colorTokenGroups, colorTokens } = ColorTokenGroupModule.createDefault({
+  //     theme,
+  //   }));
+  // } else {
+  //   colorTokenGroups = colorTokenGroupAttributesList.map((attributes) =>
+  //     ColorTokenGroupModule.create(attributes)
+  //   );
 
-    colorTokens = colorTokenAttributesList.map((attributes) =>
-      ColorTokenModule.create(attributes)
-    );
-  }
+  //   colorTokens = colorTokenAttributesList.map((attributes) =>
+  //     ColorTokenModule.create(attributes)
+  //   );
+  // }
+  const colorTokenGroups = [];
+  const colorTokens = [];
 
   return {
     theme,

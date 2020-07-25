@@ -2,8 +2,12 @@ import { mapValues } from "lodash";
 
 import {
   createReducer,
+  addEntityById,
+  addEntityIdToList,
   updateEntityById,
   updateEntitiesById,
+  removeEntityById,
+  removeEntityIdFromList,
 } from "common/store/reducerUtils";
 
 import * as themeTypes from "common/store/domains/themes/types";
@@ -56,6 +60,28 @@ const colorTokenActionHandlers = {
     return {
       ...state,
       byId,
+    };
+  },
+
+  [types.ADD_EDITING_COLOR_TOKEN]: (state, { colorToken }) => {
+    const byId = addEntityById(state.byId, colorToken);
+    const allIds = addEntityIdToList(state.allIds, colorToken);
+
+    return {
+      ...state,
+      byId,
+      allIds,
+    };
+  },
+
+  [types.REMOVE_EDITING_COLOR_TOKEN]: (state, { id }) => {
+    const byId = removeEntityById(state.byId, id);
+    const allIds = removeEntityIdFromList(state.allIds, id);
+
+    return {
+      ...state,
+      byId,
+      allIds,
     };
   },
 };

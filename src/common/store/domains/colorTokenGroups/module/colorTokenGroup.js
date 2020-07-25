@@ -24,6 +24,7 @@ export const create = (attributes) => {
   return {
     id: uuid(),
     colorTokenIds: [],
+    name: "Untitled Color Token Group",
     ...attributes,
   };
 };

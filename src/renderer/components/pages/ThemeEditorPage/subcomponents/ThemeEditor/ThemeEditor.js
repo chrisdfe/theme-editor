@@ -51,12 +51,10 @@ const ThemeEditor = () => {
           value={themeNameValue}
           label="name"
           onChange={(e) => {
-            console.log("onchange", e.target.value);
             setThemeNameValue(e.target.value);
           }}
           onBlur={() => {
-            // Probably use debounch instead of onBlur
-            console.log("onblur", themeNameValue);
+            // TODO - debounced textarea
             dispatch(
               themeActions.updateEditedTheme({
                 id: theme.id,
@@ -78,6 +76,7 @@ const ThemeEditor = () => {
           <h4 className="ThemeEditor__section-title">color token groups</h4>
 
           <ColorTokenGroupsEditor
+            theme={theme}
             swatch={swatch}
             colorTokenGroups={colorTokenGroups}
           />

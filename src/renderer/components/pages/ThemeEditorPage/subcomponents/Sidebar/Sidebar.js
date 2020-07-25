@@ -10,6 +10,9 @@ import * as swatchSelectors from "common/store/domains/swatches/selectors";
 
 import * as themeBundleSelectors from "common/store/domains/themeBundles/selectors";
 
+import CommandsContext from "common/commands/CommandsContext";
+import createThemeBundleAndBeginEditing from "common/commands/createThemeBundleAndBeginEditing";
+
 import Navbar from "@/components/lib/Navbar";
 import Button from "@/components/lib/forms/Button";
 
@@ -21,6 +24,8 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+
+  const doCommand = useContext(CommandsContext);
 
   const swatchesList = useSelector(swatchSelectors.getThemelessSwatchesList);
   const themeBeingEdited = useSelector(themeSelectors.getEditingTheme);
@@ -48,6 +53,17 @@ const Sidebar = () => {
           </div>
         </div>
 
+        {!themeBeingEdited && (
+          <div className="Sidebar__section">
+            <Button
+              onClick={() => {
+                doCommand(createThemeBundleAndBeginEditing());
+              }}
+            >
+              + new theme
+            </Button>
+          </div>
+        )}
         {themeBeingEdited && (
           <div className="Sidebar__section">
             <h3 className="Sidebar__section-title">edit theme</h3>

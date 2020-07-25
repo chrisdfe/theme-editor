@@ -23,6 +23,7 @@
     "react-dom": "16.8.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
+    "react-use": "^15.3.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -43,7 +44,7 @@
     "jsdom": "^16.2.2",
     "redux-mock-store": "^1.5.4",
     "webpack": "~4.42.1",
-    "yargs": "^15.3.1",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "yargs": "^15.3.1"
   }
 }

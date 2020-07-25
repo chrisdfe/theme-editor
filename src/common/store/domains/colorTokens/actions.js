@@ -3,7 +3,7 @@ import PayloadError, {
 } from "common/store/errors/PayloadError";
 
 import * as types from "./types";
-import * as ColorTokensModule from "./module";
+import * as ColorTokenModule from "./module";
 
 export const setColorTokens = (payload = {}) => {
   validateActionPayload(payload, { required: ["colorTokens"] });
@@ -26,12 +26,12 @@ export const addColorTokens = (payload = {}) => {
 export const createColorToken = (payload = {}) => async (dispatch) => {
   const { colorToken: attributes } = payload;
 
-  // TODO - ColorTokensModule.create();
-  const colorToken = ColorTokensModule.create(attributes);
-  // TODO - ColorTokensModule.validate();
+  // TODO - ColorTokenModule.create();
+  const colorToken = ColorTokenModule.create(attributes);
+  // TODO - ColorTokenModule.validate();
   // TODO - persistence
 
-  return dispatch({ type: types.ADD_COLOR_TOKEN, colorToken });
+  return dispatch(addColorToken({ colorToken }));
 };
 
 export const createColorTokens = (payload = {}) => async (dispatch) => {
@@ -39,10 +39,10 @@ export const createColorTokens = (payload = {}) => async (dispatch) => {
   const { colorTokens: colorTokenAttributeList } = payload;
 
   const colorTokens = colorTokenAttributeList.map((attributes) =>
-    ColorTokensModule.create(attributes)
+    ColorTokenModule.create(attributes)
   );
 
-  // TODO - ColorTokensModule.validateMany();
+  // TODO - ColorTokenModule.validateMany();
   // TODO - persistence
 
   return dispatch(addColorTokens({ colorTokens }));
@@ -75,7 +75,7 @@ export const removeColorTokensById = (payload = {}) => {
 export const deleteColorTokenById = (payload = {}) => async (dispatch) => {
   validateActionPayload(payload, { required: ["id"] });
   const { id } = payload;
-  return dispatch({ type: types.REMOVE_COLOR_TOKEN, id });
+  return dispatch(removeColorTokenById({ id }));
 };
 
 export const deleteColorTokensById = (payload = {}) => async (dispatch) => {
@@ -88,4 +88,36 @@ export const updateEditingColorToken = (payload = {}) => async (dispatch) => {
   validateActionPayload(payload, { required: ["id", "attributes"] });
   const { id, attributes } = payload;
   return dispatch({ type: types.UPDATE_EDITING_COLOR_TOKEN, id, attributes });
+};
+
+export const addEditingColorToken = (payload = {}) => {
+  validateActionPayload(payload, { required: ["colorToken"] });
+  const { colorToken } = payload;
+  return { type: types.ADD_EDITING_COLOR_TOKEN, colorToken };
+};
+
+export const createEditingColorToken = (payload = {}) => async (dispatch) => {
+  validateActionPayload(payload, { required: ["colorToken"] });
+  const { colorToken: attributes } = payload;
+
+  const colorToken = ColorTokenModule.create(attributes);
+  // TODO - validate
+
+  return dispatch(addEditingColorToken({ colorToken }));
+};
+
+export const removeEditingColorTokenById = (payload = {}) => {
+  validateActionPayload(payload, { required: ["id"] });
+  const { id } = payload;
+
+  return { type: types.REMOVE_EDITING_COLOR_TOKEN, id };
+};
+
+export const deleteEditingColorTokenById = (payload = {}) => async (
+  dispatch
+) => {
+  validateActionPayload(payload, { required: ["id"] });
+  const { id } = payload;
+
+  return dispatch(removeEditingColorTokenById({ id }));
 };

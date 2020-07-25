@@ -118,24 +118,8 @@ describe("colorTokenGroup actions", () => {
         await store.dispatch(actions.createColorTokenGroup());
         expect(getActionTypes(store)).toContain(types.ADD_COLOR_TOKEN_GROUP);
       });
-
-      describe("related colorTokens", () => {
-        it("creates ADD_COLOR_TOKENS", async () => {
-          const colorTokenGroup = createMockColorTokenGroup();
-          await store.dispatch(actions.createColorTokenGroup());
-          expect(getActionTypes(store)).toContain(
-            colorTokenTypes.ADD_COLOR_TOKENS
-          );
-        });
-
-        // describe("for the first colorTokenGroup", () => {
-        //   it("creates a default set of colorTokens", async () => {
-        //     const colorTokenGroup = createMockColorTokenGroup();
-        //     await store.dispatch(actions.createColorTokenGroup());
-        //   });
-        // });
-      });
     });
+
     // describe("colorTokens", () => {
     //   it("creates ADD_COLOR_TOKENS", async () => {
     //     const colorTokenGroup = createMockColorTokenGroup({ id: 1 });

@@ -32,11 +32,6 @@ export const setThemes = ({ themes }) => {
   return { type: types.SET_THEMES, themes };
 };
 
-// TODO
-export const fetchThemes = () => {
-  // Fetch themes from the filesystem
-};
-
 export const addTheme = (payload = {}) => {
   validateActionPayload(payload, { required: ["theme"] });
   const { theme } = payload;
@@ -69,7 +64,7 @@ export const createTheme = (payload = {}) => async (dispatch, getState) => {
     })
   );
 
-  dispatch(colorTokenGroupActions.createColorTokenGroupForTheme({ theme }));
+  // dispatch(colorTokenGroupActions.createColorTokenGroupForTheme({ theme }));
 };
 
 export const updateTheme = (payload = {}) => async (dispatch) => {

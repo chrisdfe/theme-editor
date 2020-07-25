@@ -36,18 +36,15 @@ export const createColorTokenGroup = (payload = {}) => async (dispatch) => {
 
   // TODO - ColorTokenGroupModule.validate
   // TODO - avoid duplicate colorTokenGroup names
-
-  const newColorTokens = ColorTokenGroupModule.getDefaultColorTokensAttributesForGroup(
-    { colorTokenGroup }
-  );
+  // TODO - create colorTokens if they've been passed in
 
   dispatch(addColorTokenGroup({ colorTokenGroup }));
 
-  await dispatch(
-    colorTokenActions.createColorTokens({
-      colorTokens: newColorTokens,
-    })
-  );
+  // await dispatch(
+  //   colorTokenActions.createColorTokens({
+  //     colorTokens: newColorTokens,
+  //   })
+  // );
 };
 
 export const createColorTokenGroupForTheme = (payload = {}) => async (
@@ -132,4 +129,19 @@ export const deleteColorTokenGroupsByThemeId = (payload = {}) => async (
   return dispatch(deleteColorTokenGroupsById({ ids }));
 };
 
-// export const deleteColorTokenGroupsById = () =>
+export const createEditingColorTokenGroup = (payload = {}) => {
+  validateActionPayload(payload, { required: ["colorTokenGroup"] });
+  const { colorTokenGroup: attributes } = payload;
+
+  const colorTokenGroup = ColorTokenGroupModule.create(attributes);
+
+  return { type: types.ADD_EDITING_COLOR_TOKEN_GROUP, colorTokenGroup };
+};
+
+// TODO - make all update_ functions use this format. the id + attributes things
+//        keeps confusing me
+export const updateEditingColorTokenGroup = (payload = {}) => {
+  validateActionPayload(payload, { required: ["id", "attributes"] });
+  const { id, attributes } = payload;
+  return { type: types.UPDATE_EDITING_COLOR_TOKEN_GROUP, id, attributes };
+};

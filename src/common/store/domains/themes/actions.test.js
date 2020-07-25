@@ -90,12 +90,6 @@ describe("theme actions", () => {
       it("ADD_SWATCH", async () => {
         expect(getActionTypes(store)).toContain(swatchTypes.ADD_SWATCH);
       });
-
-      it("ADD_COLOR_TOKEN_GROUP", async () => {
-        expect(getActionTypes(store)).toContain(
-          colorTokenGroupTypes.ADD_COLOR_TOKEN_GROUP
-        );
-      });
     });
 
     describe("validation", () => {

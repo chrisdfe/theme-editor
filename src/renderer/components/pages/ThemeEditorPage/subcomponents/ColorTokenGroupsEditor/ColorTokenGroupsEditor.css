@@ -5,8 +5,22 @@
   margin-top: 5px;
 }
 
+.ColorTokenGroupsEditor__color-token-group {
+  padding: 10px 0;
+  border-bottom: 1px solid var(f_high);
+  margin-bottom: 20px;
+}
+
+.ColorTokenGroupsEditor__color-token-group__body {
+  padding: 10px;
+}
+
+.ColorTokenGroupsEditor__color-token-group__color-tokens-list {
+  margin: 10px 0;
+}
+
 .ColorTokenGroupsEditor__color-token {
-  margin: 0 0 5px;
+  margin: 0 0 10px;
 }
 
 .ColorTokenGroupsEditor__color-token__name {
@@ -14,6 +28,7 @@
 }
 .ColorTokenGroupsEditor__color-token__swatch-colors-list {
   display: flex;
+  margin: 5px 0;
 }
 
 .ColorTokenGroupsEditor__color-token__swatch-color {

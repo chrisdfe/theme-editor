@@ -40,6 +40,7 @@
 - Debounced TextInput
 - Split byId/allIds in editing reducers up into separate files like they are in entities
 - Look into reducing duplication between editing/entities reducers (i.e just pull things out into functions that both can import)
+- Sidebar shouldn't scroll with preview area
 
 ## MVP themeeditor
 

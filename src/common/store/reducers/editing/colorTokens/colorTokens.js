@@ -106,11 +106,9 @@ const swatchColorActionHandlers = {
 
 const colorTokenGroupActionHandlers = {
   [colorTokenGroupTypes.REMOVE_EDITING_COLOR_TOKEN_GROUP]: (state, { id }) => {
-    console.log("reducer", id);
     const childColorTokenIds = state.allIds.filter((colorTokenId) => {
       return state.byId[colorTokenId].colorTokenGroupId === id;
     });
-    console.log("childColorTokenIds", childColorTokenIds);
     const byId = removeEntitiesById(state.byId, childColorTokenIds);
     const allIds = removeEntityIdsFromList(state.allIds, childColorTokenIds);
 

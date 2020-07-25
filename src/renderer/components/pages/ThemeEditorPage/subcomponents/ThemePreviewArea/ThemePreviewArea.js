@@ -69,12 +69,9 @@ const ThemePreviewArea = () => {
     themeBundleSelectors.getEditingThemeBundle
   );
 
-  console.log("colorTokenGroups", colorTokenGroups);
-
   const colorTokensByGroupId = useSelector(
     colorTokenGroupSelectors.getEditingColorTokenGroupColorTokensById
   );
-  console.log("colorTokensByGroupId", colorTokensByGroupId);
 
   // TODO - this util should go somewhere else
   const colorTokenMap = createFlatColorTokenMap({
@@ -82,8 +79,6 @@ const ThemePreviewArea = () => {
     colorTokenGroups,
     colorTokensByGroupId,
   });
-
-  console.log("colorTokenMap", colorTokenMap);
 
   const prefixedThemeCSSVariables = getCSSVariablesFromTokenMap(
     colorTokenMap,

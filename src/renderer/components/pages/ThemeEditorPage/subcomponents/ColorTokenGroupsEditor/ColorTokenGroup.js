@@ -57,7 +57,7 @@ const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
         />
       </div>
 
-      <div className="ColorTokenGroupsEditor__color-token-group__body">
+      <div className="ColorTokenGroupsEditor__color-token-group__color-tokens-list-wrapper">
         <div className="ColorTokenGroupsEditor__color-token-group__color-tokens-list">
           {colorTokens.map((colorToken) => {
             return (
@@ -86,7 +86,10 @@ const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
             + add color token
           </Button>
         </div>
+      </div>
 
+      <div className="ColorTokenGroupsEditor__color-token-group__child-list-wrapper">
+        {/*TODO - child color token groups go here */}
         <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
           <Button
             onClick={() => {
@@ -101,21 +104,21 @@ const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
           >
             + add color token group
           </Button>
-
-          <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
-            <Button
-              onClick={() => {
-                dispatch(
-                  colorTokenGroupActions.deleteEditingColorTokenGroupById({
-                    id: colorTokenGroup.id,
-                  })
-                );
-              }}
-            >
-              - delete
-            </Button>
-          </div>
         </div>
+      </div>
+
+      <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
+        <Button
+          onClick={() => {
+            dispatch(
+              colorTokenGroupActions.deleteEditingColorTokenGroupById({
+                id: colorTokenGroup.id,
+              })
+            );
+          }}
+        >
+          - delete
+        </Button>
       </div>
     </div>
   );

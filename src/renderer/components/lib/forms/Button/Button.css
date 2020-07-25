@@ -11,6 +11,11 @@
   text-decoration: none;
 }
 
+.Button.Button--size-small {
+  padding: 2px 8px;
+  font-size: 10px;
+}
+
 .Button:hover,
 .LinkButton:hover {
   background: var(--b_med);

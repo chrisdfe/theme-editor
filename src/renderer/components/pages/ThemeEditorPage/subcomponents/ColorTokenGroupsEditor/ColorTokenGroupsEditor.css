@@ -12,11 +12,12 @@
 }
 
 .ColorTokenGroupsEditor__color-token-group__body {
-  padding: 10px;
 }
 
-.ColorTokenGroupsEditor__color-token-group__color-tokens-list {
+.ColorTokenGroupsEditor__color-token-group__color-tokens-list-wrapper,
+.ColorTokenGroupsEditor__color-token-group__child-list-wrapper {
   margin: 10px 0;
+  padding: 0 10px;
 }
 
 .ColorTokenGroupsEditor__color-token {

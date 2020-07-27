@@ -12,7 +12,7 @@ import Button from "@/components/lib/forms/Button";
 
 import ColorToken from "./ColorToken";
 
-const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
+const ColorTokenGroup = ({ theme, colorTokenGroup }) => {
   const dispatch = useDispatch();
 
   const colorTokens = useSelector((state) =>
@@ -60,13 +60,7 @@ const ColorTokenGroup = ({ theme, swatch, colorTokenGroup }) => {
       <div className="ColorTokenGroupsEditor__color-token-group__color-tokens-list-wrapper">
         <div className="ColorTokenGroupsEditor__color-token-group__color-tokens-list">
           {colorTokens.map((colorToken) => {
-            return (
-              <ColorToken
-                key={colorToken.id}
-                colorToken={colorToken}
-                swatch={swatch}
-              />
-            );
+            return <ColorToken key={colorToken.id} colorToken={colorToken} />;
           })}
         </div>
 

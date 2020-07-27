@@ -54,6 +54,14 @@ export const createMockColorToken = (attributes) => ({
   ...attributes,
 });
 
+export const createMockColorTokenModification = (attributes) => ({
+  id: 1,
+  colorTokenId: 1,
+  type: "",
+  params: {},
+  ...attributes,
+});
+
 export const createMockDirectory = (attributes) => ({
   id: 1,
   path: "/test-directory-path/",

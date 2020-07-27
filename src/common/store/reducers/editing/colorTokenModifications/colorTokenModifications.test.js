@@ -1,0 +1,1 @@
+xdescribe("editing/colorTokenModifications reducer");

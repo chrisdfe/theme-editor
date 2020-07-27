@@ -19,7 +19,6 @@
 - stop mocking state in action tests
 - nest entities inside of editing one more level (editing/entities), to separate them from lookup tables etc
 - Write tests for the experimental copy/editing stuff I threw together
-- Expand/collapse accordions
 - Change over to new theme format
   - white/black theme
   - black/white theme
@@ -88,3 +87,4 @@
 - Split theme editor out into separate app
 - switch redux state from arrays to an object with id keys
 - 'themeBundle' actions - 'addThemeBundle', 'types.ADD_THEME_BUNDLE' etc
+- Expand/collapse accordions

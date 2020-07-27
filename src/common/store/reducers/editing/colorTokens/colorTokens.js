@@ -16,6 +16,7 @@ import * as themeTypes from "common/store/domains/themes/types";
 import * as swatchColorTypes from "common/store/domains/swatchColors/types";
 import * as types from "common/store/domains/colorTokens/types";
 import * as colorTokenGroupTypes from "common/store/domains/colorTokenGroups/types";
+import * as colorTokenModificationTypes from "common/store/domains/colorTokenModifications/types";
 
 const initialState = {
   byId: {},
@@ -120,11 +121,58 @@ const colorTokenGroupActionHandlers = {
   },
 };
 
+const colorTokenModificationActionHandlers = {
+  [colorTokenModificationTypes.ADD_EDITING_COLOR_TOKEN_MODIFICATION]: (
+    state,
+    { colorTokenModification }
+  ) => {
+    const byId = mapValues(state.byId, (colorToken) => {
+      if (colorTokenModification.colorTokenId === colorToken.id) {
+        console.log("adding to modificationIds", colorTokenModification);
+        const { modificationIds } = colorToken;
+        return {
+          ...colorToken,
+          modificationIds: [...modificationIds, colorTokenModification.id],
+        };
+      }
+
+      return colorToken;
+    });
+
+    return {
+      ...state,
+      byId,
+    };
+  },
+
+  [colorTokenModificationTypes.REMOVE_EDITING_COLOR_TOKEN_MODIFICATION]: (
+    state,
+    { id }
+  ) => {
+    const byId = mapValues(state.byId, (colorToken) => {
+      const modificationIds = colorToken.modificationIds.filter(
+        (otherId) => otherId !== id
+      );
+
+      return {
+        ...colorToken,
+        modificationIds,
+      };
+    });
+
+    return {
+      ...state,
+      byId,
+    };
+  },
+};
+
 const colorTokensReducer = createReducer(initialState, {
   ...themeActionHandlers,
   ...colorTokenActionHandlers,
   ...swatchColorActionHandlers,
   ...colorTokenGroupActionHandlers,
+  ...colorTokenModificationActionHandlers,
 });
 
 export default colorTokensReducer;

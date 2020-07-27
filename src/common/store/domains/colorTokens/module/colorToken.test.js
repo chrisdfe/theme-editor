@@ -1,7 +1,10 @@
 import * as ColorTokenModule from "./colorToken";
 import { v4 as uuid } from "uuid";
 
-import { createMockColorToken } from "tests/utils";
+import {
+  createMockColorToken,
+  createMockColorTokenModification,
+} from "tests/utils";
 
 jest.mock("uuid");
 
@@ -53,6 +56,26 @@ describe("ColorToken module", () => {
 
     it("creates a copy of a given colorToken", () => {
       expect(colorTokenCopy).toEqual(expectedColorTokenCopy);
+    });
+  });
+
+  describe("applyModifications", () => {
+    describe("it correctly applies alpha modifications", () => {
+      const baseColor = "#ff0000";
+
+      const alphaModification = createMockColorTokenModification({
+        type: "alpha",
+        params: { value: 0.5 },
+      });
+      const modifications = [alphaModification];
+
+      const expectedColor = "#ff000080";
+
+      const result = ColorTokenModule.applyModifications(
+        baseColor,
+        modifications
+      );
+      expect(result).toEqual(expectedColor);
     });
   });
 });

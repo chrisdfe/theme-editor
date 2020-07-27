@@ -17,7 +17,7 @@ import "./ColorTokenGroupsEditor.css";
 
 import ColorTokenGroup from "./ColorTokenGroup";
 
-const ColorTokenGroupsEditor = ({ theme, colorTokenGroups, swatch }) => {
+const ColorTokenGroupsEditor = ({ theme, colorTokenGroups }) => {
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +28,6 @@ const ColorTokenGroupsEditor = ({ theme, colorTokenGroups, swatch }) => {
             <ColorTokenGroup
               key={colorTokenGroup.id}
               theme={theme}
-              swatch={swatch}
               colorTokenGroup={colorTokenGroup}
             />
           );

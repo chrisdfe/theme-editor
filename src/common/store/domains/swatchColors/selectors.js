@@ -10,6 +10,12 @@ export const getSwatchColorsList = createSelector(
 
 export const getEditingSwatchColors = (state) => state.editing.swatchColors;
 
+export const getEditingSwatchColorById = createSelector(
+  getEditingSwatchColors,
+  (_, id) => id,
+  ({ byId }, id) => byId[id]
+);
+
 export const getEditingSwatchColorsList = createSelector(
   getEditingSwatchColors,
   getEntityList

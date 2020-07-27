@@ -1,0 +1,14 @@
+.ColorTokenGroupsEditor__color-token-group {
+  padding: 0 0 15px;
+  border-bottom: 1px solid var(--color-foreground);
+  margin-bottom: 10px;
+}
+
+.ColorTokenGroupsEditor__color-token-group__body {
+}
+
+.ColorTokenGroupsEditor__color-token-group__color-tokens-list-wrapper,
+.ColorTokenGroupsEditor__color-token-group__child-list-wrapper {
+  margin: 10px 0;
+  padding: 0 10px;
+}

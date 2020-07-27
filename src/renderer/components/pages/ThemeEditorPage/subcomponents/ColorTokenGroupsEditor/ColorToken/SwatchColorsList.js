@@ -4,6 +4,8 @@ import classnames from "classnames";
 
 import * as swatchSelectors from "common/store/domains/swatches/selectors";
 
+import "./SwatchColorsList";
+
 const SwatchColor = ({ swatchColor, selectedId, onSelect }) => {
   // const isSelected = swatchColor.id === colorToken.swatchColorId;
   const isSelected = swatchColor.id === selectedId;

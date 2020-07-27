@@ -9,6 +9,8 @@ import Button from "@/components/lib/forms/Button";
 
 import SwatchColorsList from "./SwatchColorsList";
 
+import "./ColorTokenModification.css";
+
 const AlphaControls = ({ colorTokenModification }) => {
   const dispatch = useDispatch();
 

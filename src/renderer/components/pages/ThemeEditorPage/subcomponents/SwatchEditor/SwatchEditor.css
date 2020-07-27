@@ -21,8 +21,9 @@
   cursor: pointer;
 }
 
+.SwatchEditor__swatch-color-card:hover,
 .SwatchEditor__swatch-color-card.SwatchEditor__swatch-color-card--is-selected {
-  border-color: var(--f_med);
+  transform: translateY(-4px);
 }
 
 .SwatchEditor__swatch-color-card.SwatchEditor__swatch-color-card--is-editable {
@@ -33,25 +34,6 @@
   width: 30px;
   height: 30px;
 }
-
-/*
-.SwatchEditor__swatch-color-card__delete-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-
-  width: 10px;
-  height: 10px;
-  padding: 0px;
-  line-height: 0;
-  font-size: 8px;
-  border: 0 none;
-  background: var(--b_high);
-  color: var(--f_high);
-  cursor: pointer;
-}
-*/
-
 
 .SwatchEditor__input-wrapper {
 }

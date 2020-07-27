@@ -1,0 +1,20 @@
+.ColorTokenGroupsEditor__color-token {
+  margin: 0 0 10px;
+}
+
+.ColorTokenGroupsEditor__color-token__final-color {
+  width: 50px;
+  height: 50px;
+}
+
+.ColorTokenGroupsEditor__color-token-modifications {
+  margin: 10px 0;
+}
+
+.ColorTokenGroupsEditor__color-token-modifications-title {
+  margin: 0 0 5px;
+}
+
+.ColorTokenGroupsEditor__color-token__name {
+  margin: 0;
+}

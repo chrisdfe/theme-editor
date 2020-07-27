@@ -1,5 +1,5 @@
 .PageTitle {
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--f_high);
+  border-bottom: 1px solid var(--foreground);
   margin-bottom: 0;
 }

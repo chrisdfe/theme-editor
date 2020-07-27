@@ -19,9 +19,6 @@
 - stop mocking state in action tests
 - nest entities inside of editing one more level (editing/entities), to separate them from lookup tables etc
 - Write tests for the experimental copy/editing stuff I threw together
-- Change over to new theme format
-  - white/black theme
-  - black/white theme
 - replace 'omit' with a more performant version (https://levelup.gitconnected.com/omit-is-being-removed-in-lodash-5-c1db1de61eaf)
 - better api for Commands
   - const { saveTheme } = useCommands();
@@ -31,7 +28,7 @@
 - Look into abstracting common CRUD actions/reducers out
 - objectDiff is returning the whole object if one of its fields is different - it should just be the field that is different eg
   { themes: { name: ['theme', 'new theme name'] }}
-  instead of (what it is now)
+  instead of (what it is now):
   { themes: [{ name: 'theme', ... }, { name: 'new theme name', ... }]}
 - Handle 2 theme files containing the same theme - duplicate id error
 - fix objectDiff tests
@@ -88,3 +85,6 @@
 - switch redux state from arrays to an object with id keys
 - 'themeBundle' actions - 'addThemeBundle', 'types.ADD_THEME_BUNDLE' etc
 - Expand/collapse accordions
+- Change over to new theme format
+  - white/black theme
+  - black/white theme

@@ -82,24 +82,26 @@ const ColorTokenGroup = ({ theme, colorTokenGroup }) => {
         </div>
       </div>
 
+      {/* TODO - child color token groups go here */}
+      {/*
       <div className="ColorTokenGroupsEditor__color-token-group__child-list-wrapper">
-        {/*TODO - child color token groups go here */}
         <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
           <Button
             onClick={() => {
-              /*
+
               dispatch(
                 colorTokenGroupActions.createEditingColorTokenGroup({
                   colorTokenGroup: { themeId: theme.id },
                 })
               );
-              */
+
             }}
           >
             + add color token group
           </Button>
         </div>
       </div>
+      */}
 
       <div className="ColorTokenGroupsEditor__color-token-group__button-wrapper">
         <Button

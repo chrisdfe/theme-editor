@@ -19,6 +19,8 @@ import TextInput from "@/components/lib/forms/TextInput";
 import ColorTokenModification from "./ColorTokenModification";
 import SwatchColorsList from "./SwatchColorsList";
 
+import "./ColorToken.css";
+
 const ColorToken = ({ colorToken }) => {
   const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ const ColorToken = ({ colorToken }) => {
     colorTokenSelectors.getEditingColorTokenModifications(state, colorToken)
   );
 
-  const finalColor = useSelector((state) =>
+  const modifiedColor = useSelector((state) =>
     colorTokenSelectors.getEditingColorTokenModifiedColor(state, colorToken.id)
   );
 
@@ -69,7 +71,7 @@ const ColorToken = ({ colorToken }) => {
     <div className="ColorTokenGroupsEditor__color-token">
       <div
         className="ColorTokenGroupsEditor__color-token__final-color"
-        style={{ backgroundColor: finalColor }}
+        style={{ backgroundColor: modifiedColor }}
       />
       <div className="ColorTokenGroupsEditor__color-token__name-input-wrapper">
         <TextInput

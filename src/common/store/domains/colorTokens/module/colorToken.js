@@ -11,10 +11,8 @@ export const create = (attributes) => {
   return {
     id: uuid(),
     swatchColorId: null,
-    baseColor: "",
     modificationIds: [],
-    color: "",
-    name: "",
+    name: "Untitled",
     ...attributes,
   };
 };

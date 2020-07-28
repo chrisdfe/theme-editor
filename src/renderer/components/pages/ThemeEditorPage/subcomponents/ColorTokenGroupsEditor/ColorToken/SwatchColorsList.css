@@ -12,8 +12,6 @@
   cursor: pointer;
 }
 
-.ColorTokenGroupsEditor__color-token__swatch-color:hover,
 .ColorTokenGroupsEditor__color-token__swatch-color.ColorTokenGroupsEditor__color-token__swatch-color--is-selected {
-  /*border-color: var(--color-interactive);*/
-  transform: translateY(-3px);
+  border-color: var(--color-interactive);
 }

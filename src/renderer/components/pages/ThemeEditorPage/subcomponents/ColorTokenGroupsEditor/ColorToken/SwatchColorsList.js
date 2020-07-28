@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 import * as swatchSelectors from "common/store/domains/swatches/selectors";
 
-import "./SwatchColorsList";
+import "./SwatchColorsList.css";
 
 const SwatchColor = ({ swatchColor, selectedId, onSelect }) => {
   // const isSelected = swatchColor.id === colorToken.swatchColorId;
@@ -35,6 +35,8 @@ const SwatchColorsList = ({ selectedId, onSelect }) => {
   const swatchColors = useSelector((state) =>
     swatchSelectors.getEditingSwatchSwatchColors(state, swatch)
   );
+
+  console.log("SwatchColorsList", swatchColors);
 
   return (
     <div className="ColorTokenGroupsEditor__color-token__swatch-colors-list">

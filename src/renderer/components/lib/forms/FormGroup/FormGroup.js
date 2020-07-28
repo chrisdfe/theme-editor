@@ -10,9 +10,9 @@ const FormGroup = ({ id, label, children, hideLabel, ...other }) => {
   return (
     <div className="FormGroup" {...other}>
       <label className={labelClassName} htmlFor={id}>
-        {label}
+        <span>{label}</span>
+        <div className="FormGroup__input-wrapper">{children}</div>
       </label>
-      <div className="FormGroup__input-wrapper">{children}</div>
     </div>
   );
 };
